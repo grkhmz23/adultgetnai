@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import BrandLogo from '../components/BrandLogo';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,23 +31,8 @@ export default function Header() {
     >
       <div className="max-w-[1400px] mx-auto h-full flex items-center justify-between px-6">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
-          <div className="relative w-8 h-8 flex items-center justify-center">
-            <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8">
-              <defs>
-                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#8338ec" />
-                  <stop offset="100%" stopColor="#3a86ff" />
-                </linearGradient>
-              </defs>
-              <polygon points="20,2 38,35 2,35" stroke="url(#logoGrad)" strokeWidth="2.5" fill="none" strokeLinejoin="round" />
-              <polygon points="20,10 30,28 10,28" fill="url(#logoGrad)" opacity="0.3" />
-              <circle cx="20" cy="22" r="3" fill="url(#logoGrad)" />
-            </svg>
-          </div>
-          <span className="text-[15px] font-semibold tracking-tight text-[#121212]">
-            AdultGen AI
-          </span>
+        <a href="#" aria-label="AdultGen AI home">
+          <BrandLogo compact />
         </a>
 
         {/* Desktop Nav */}

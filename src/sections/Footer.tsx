@@ -1,4 +1,5 @@
 import { Github, Twitter } from 'lucide-react';
+import BrandLogo from '../components/BrandLogo';
 
 const footerLinks = [
   {
@@ -25,23 +26,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Logo & Description */}
           <div className="md:col-span-4">
-            <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="relative w-8 h-8 flex items-center justify-center">
-                <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8">
-                  <defs>
-                    <linearGradient id="logoGradFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#8338ec" />
-                      <stop offset="100%" stopColor="#3a86ff" />
-                    </linearGradient>
-                  </defs>
-                  <polygon points="20,2 38,35 2,35" stroke="url(#logoGradFooter)" strokeWidth="2.5" fill="none" strokeLinejoin="round" />
-                  <polygon points="20,10 30,28 10,28" fill="url(#logoGradFooter)" opacity="0.3" />
-                  <circle cx="20" cy="22" r="3" fill="url(#logoGradFooter)" />
-                </svg>
-              </div>
-              <span className="text-[15px] font-semibold tracking-tight text-[#121212]">
-                AdultGen AI
-              </span>
+            <a href="#" className="inline-flex mb-4" aria-label="AdultGen AI home">
+              <BrandLogo />
             </a>
             <p className="text-sm text-[#888888] max-w-[280px] leading-relaxed mb-6">
               The most advanced AI-powered platform for creating photorealistic adult content. Private, secure, and lightning-fast.
