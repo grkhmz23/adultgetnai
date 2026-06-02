@@ -1,5 +1,15 @@
 import { createSessionCookie, isAuthConfigured, readJsonBody, safeEqual } from './_auth.js';
 
+function getAcceptedPasswords() {
+  return [
+    process.env.INVESTOR_PASSWORD,
+    ...(process.env.INVESTOR_PASSWORD_ALIASES || '')
+      .split(',')
+      .map((password) => password.trim())
+      .filter(Boolean),
+  ].filter(Boolean);
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -14,9 +24,13 @@ export default async function handler(req, res) {
 
   try {
     const { login = '', password = '' } = await readJsonBody(req);
+    const submittedLogin = String(login).trim();
+    const submittedPassword = String(password).trim();
     const valid =
-      safeEqual(String(login), process.env.INVESTOR_LOGIN) &&
-      safeEqual(String(password), process.env.INVESTOR_PASSWORD);
+      safeEqual(submittedLogin, process.env.INVESTOR_LOGIN.trim()) &&
+      getAcceptedPasswords().some((acceptedPassword) =>
+        safeEqual(submittedPassword, acceptedPassword)
+      );
 
     if (!valid) {
       res.status(401).json({ ok: false });
@@ -29,4 +43,3 @@ export default async function handler(req, res) {
     res.status(400).json({ ok: false });
   }
 }
-
