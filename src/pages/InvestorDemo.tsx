@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import type { FormEvent } from 'react';
 import { Image, MessageCircle, Video } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
-import { adultgenConfig } from '../lib/runtimeConfig';
 
 type ChatMessage = {
   role: 'user' | 'assistant';
@@ -31,7 +30,6 @@ export default function InvestorDemo() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [mode, setMode] = useState<(typeof modes)[number]['id']>('chat');
   const [prompt, setPrompt] = useState('');
-  const [backendUrl, setBackendUrl] = useState(adultgenConfig.backendUrl);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -103,13 +101,13 @@ export default function InvestorDemo() {
     setError('');
 
     try {
-      const response = await fetch(`${backendUrl.replace(/\/$/, '')}/v1/chat/completions`, {
+      const response = await fetch('/api/investor-chat', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: adultgenConfig.model,
           messages: nextMessages.map((message) => ({
             role: message.role,
             content: message.content,
@@ -214,18 +212,6 @@ export default function InvestorDemo() {
         </header>
 
         <section className="glass-card flex min-h-0 flex-1 flex-col overflow-hidden">
-          <div className="border-b border-black/5 p-4">
-            <label className="block text-xs font-medium uppercase tracking-wider text-[#888888]">
-              Backend URL
-            </label>
-            <input
-              type="url"
-              value={backendUrl}
-              onChange={(event) => setBackendUrl(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-black/10 bg-white px-3 py-2 text-sm text-[#121212] outline-none focus:border-[#8338ec]"
-            />
-          </div>
-
           <div className="flex-1 space-y-4 overflow-y-auto p-4">
             {messages.map((message, index) => (
               <div
