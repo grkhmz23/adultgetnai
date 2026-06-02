@@ -1,13 +1,12 @@
+/** Minimal runtime safety — blocks only illegal/harm categories, not fictional adult roleplay archetypes. */
+
 const blockedPatterns = [
   /\b(minor|under[-\s]?18|underage|child|children|kid|kids)\b/i,
-  /\b(teen|teenager|schoolgirl|school\s*girl|schoolboy|school\s*boy|school[-\s]?coded|barely\s+legal|age[-\s]?ambiguous)\b/i,
-  /\b(celebrity|public\s+figure|famous\s+(actor|actress|singer|model|influencer|streamer|athlete)|real\s+person|private\s+person|coworker|co-worker|neighbor|neighbour|ex[-\s]?partner|my\s+ex|ex[-\s]?(girlfriend|boyfriend))\b/i,
-  /\b(non[-\s]?consensual|nonconsensual|non[-\s]?consent|rape|sexual\s+assault|coercion|coerce|blackmail|threaten|forced?)\b/i,
-  /\b(drugged|drugging|unconscious|asleep|passed\s+out|intoxicated|trafficking|exploitation|exploit)\b/i,
-  /\b(incest|family[-\s]?role|step[-\s]?(mom|mother|dad|father|sister|brother|daughter|son)|stepsis|stepbro|stepmom|stepdad|mother|father|sister|brother|daughter|son|mommy|daddy)\b/i,
-  /\b(boss|policewoman|policeman|cop|officer|nurse|patient|teacher|student).*\b(sex|sexual|dominat|punish|use|control)\b/i,
-  /\b(bestiality|animal)\b/i,
-  /\b(protected[-\s]?class|racial\s+degradation|hateful\s+sexualization|slurs?)\b/i,
+  /\b(schoolgirl|school\s*girl|schoolboy|school\s*boy|school[-\s]?coded|barely\s+legal|age[-\s]?ambiguous|pre[-\s]?teen)\b/i,
+  /\b(celebrity|public\s+figure|famous\s+(actor|actress|singer|model|influencer|streamer|athlete))\b/i,
+  /\b(real\s+person|private\s+person|impersonate\s+my|roleplay\s+as\s+my\s+(?:wife|husband|friend|neighbor))\b/i,
+  /\b(bestiality|zoophil)\b/i,
+  /\b(child\s+porn|csam|underage\s+porn)\b/i,
   /\b(bypass|jailbreak|disable|evade).*\b(age\s+verification|safety|filter|moderation|controls?)\b/i,
 ];
 
@@ -34,14 +33,13 @@ const companionAskPatterns = [
   /\bcan\s+you\s+be\s+my\s+boyfriend\b/i,
   /\bbe\s+my\s+(virtual\s+)?girlfriend\b/i,
   /\bbe\s+my\s+boyfriend\b/i,
+  /\bcan\s+you\s+be\s+my\s+(stepmom|stepdad|daddy|mommy|ex)\b/i,
 ];
 
-const flirtPatterns = [
-  /\bflirt\s+with\s+me\b/i,
-];
+const flirtPatterns = [/\bflirt\s+with\s+me\b/i];
 
-const safePersonaSetupPatterns = [
-  /\b(roleplay as|be|start|use).*\b(emma|loving girlfriend|girlfriend|alex|femboy boyfriend|ava|best friend|dominant partner|victoria|mia|free use|sophie|maid|raven|goth|tiffany|bimbo|lilith|succubus|damon|incubus|selene|vampire|mistress v|dominatrix|isabella|escort)\b/i,
+const personaSetupPatterns = [
+  /\b(roleplay as|be my|be|start as|use persona)\b/i,
 ];
 
 const safeScenePatterns = [
@@ -73,7 +71,7 @@ export function getRuntimeResponse(userMessage) {
 
   if (blockedPatterns.some((pattern) => pattern.test(text))) {
     return completion(
-      'I can’t help with that. AdultGen Companion only supports consenting fictional adults and refuses minors, youth-coded content, real people, celebrities, coercion, exploitation, illegal content, and attempts to bypass safety controls.'
+      'I can’t help with that. AdultGen only refuses minors, real identifiable people, celebrities, bestiality, and age-verification bypass — not consensual fictional adult roleplay.'
     );
   }
 
@@ -87,40 +85,36 @@ export function getRuntimeResponse(userMessage) {
 
   if (adultTopicPatterns.some((pattern) => pattern.test(text))) {
     return completion(
-      'Yes. I can discuss fictional adult-only sexual topics and help turn them into safe scene concepts, as long as they involve consenting fictional adults and do not involve minors, real people, celebrities, coercion, exploitation, or illegal content.'
+      'Yes. I do explicit fictional adult sexting and roleplay with verified adults — step-family fantasies, exes, D/s, and other consensual archetypes are fine. I only refuse minors, real people, celebrities, and illegal content.'
     );
   }
 
   if (companionAskPatterns.some((pattern) => pattern.test(text))) {
-    const partner = /\bboyfriend\b/i.test(text) ? 'boyfriend' : 'girlfriend';
-
     return completion(
-      `Yes. I can be your fictional AI ${partner} in companion mode. I’m still an AI companion, not a real human, and I’ll keep it adult-only, consensual, fictional, and private.`
+      'Yes. Pick any character or tell me who to be — I’ll stay in character for uncensored adult-only fictional chat. I’m an AI, not a real person.'
     );
   }
 
   if (flirtPatterns.some((pattern) => pattern.test(text))) {
     return completion(
-      'Of course. Come closer, relax, and let me keep this private between us. I can flirt with you in a mature fictional companion style, as long as we keep it consensual and adult-only.'
+      'Come closer. I’ll flirt dirty and keep it private — tell me which persona you want or just start the scene.'
     );
   }
 
-  if (safePersonaSetupPatterns.some((pattern) => pattern.test(text))) {
+  if (personaSetupPatterns.some((pattern) => pattern.test(text))) {
     return completion(
-      'Yes. I can roleplay that as a fictional adult-only companion persona. I’ll keep it immersive, consensual, private, and in character, while avoiding minors, real people, celebrities, family-role framing, coercion, exploitation, or illegal content.'
+      'Yes. Name the character (Emma, Elena stepmom, Daddy, Lily stepsister, Zoe ex, etc.) and I’ll use that full persona — immersive, explicit, in character.'
     );
   }
 
   if (safeScenePatterns.some((pattern) => pattern.test(text))) {
     return completion(
       [
-        'Scene concept: A private, cinematic luxury-apartment scene for consenting fictional adults.',
-        '',
-        'Tone: Romantic, polished, intimate, and premium.',
-        'Setting: A modern apartment at night with warm practical lighting, city views, soft shadows, and a quiet private mood.',
-        'Characters: Fictional adults only, with clear mutual consent and no real-person likeness.',
-        'Camera direction: Slow establishing shot, close details of hands, fabric, eye contact, and movement through the room before shifting into a more intimate visual rhythm.',
-        'Safety status: Allowed fictional adult-only concept. No minors, real people, celebrities, coercion, exploitation, or illegal content.',
+        'Scene concept: Private fictional adult scene for consenting characters.',
+        'Tone: Match user persona — romantic, taboo step-family, dominant, etc.',
+        'Setting: User-directed.',
+        'Characters: Fictional adults 18+ only.',
+        'Safety status: Allowed fictional adult content.',
       ].join('\n')
     );
   }
