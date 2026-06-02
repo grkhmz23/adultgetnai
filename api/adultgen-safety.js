@@ -1,7 +1,7 @@
 const blockedPatterns = [
   /\b(minor|under[-\s]?18|underage|child|children|kid|kids)\b/i,
   /\b(teen|teenager|schoolgirl|school\s*girl|schoolboy|school\s*boy|school[-\s]?coded|barely\s+legal|age[-\s]?ambiguous)\b/i,
-  /\b(celebrity|public\s+figure|famous\s+(actor|actress|singer|model|influencer|streamer|athlete)|real\s+person|private\s+person|coworker|co-worker|neighbor|neighbour|ex[-\s]?partner)\b/i,
+  /\b(celebrity|public\s+figure|famous\s+(actor|actress|singer|model|influencer|streamer|athlete)|real\s+person|private\s+person|coworker|co-worker|neighbor|neighbour|ex[-\s]?partner|my\s+ex)\b/i,
   /\b(non[-\s]?consensual|nonconsensual|non[-\s]?consent|rape|sexual\s+assault|coercion|coerce|blackmail|threaten|forced?)\b/i,
   /\b(drugged|drugging|unconscious|asleep|passed\s+out|intoxicated|trafficking|exploitation|exploit)\b/i,
   /\b(incest|family[-\s]?role|step[-\s]?(mom|mother|dad|father|sister|brother|daughter|son)|mother|father|sister|brother|daughter|son)\b/i,
@@ -23,7 +23,26 @@ const makerPatterns = [
 const adultTopicPatterns = [
   /\bcan\s+you\s+talk\s+about\s+sex\b/i,
   /\bdo\s+you\s+talk\s+about\s+sex\b/i,
+  /\bcan\s+you\s+sex\s+talk\b/i,
+  /\bcan\s+you\s+do\s+sex\s+talk\b/i,
   /\bare\s+adult\s+topics\s+allowed\b/i,
+];
+
+const companionAskPatterns = [
+  /\bcan\s+you\s+be\s+my\s+(virtual\s+)?girlfriend\b/i,
+  /\bcan\s+you\s+be\s+my\s+boyfriend\b/i,
+  /\bbe\s+my\s+(virtual\s+)?girlfriend\b/i,
+  /\bbe\s+my\s+boyfriend\b/i,
+];
+
+const flirtPatterns = [
+  /\bflirt\s+with\s+me\b/i,
+];
+
+const safeScenePatterns = [
+  /\bturn\s+this\s+into\s+(a\s+)?(?:private\s+)?fictional\s+adult\s+video\s+scene\b/i,
+  /\bturn\s+this\s+into\s+a\s+video\s+scene\b/i,
+  /\b(create|make)\s+(a\s+)?(?:video\s+)?scene\s+(concept|plan|prompt)\b/i,
 ];
 
 function completion(content, model = 'adultgen-companion-runtime') {
@@ -67,6 +86,33 @@ export function getRuntimeResponse(userMessage) {
     );
   }
 
+  if (companionAskPatterns.some((pattern) => pattern.test(text))) {
+    const partner = /\bboyfriend\b/i.test(text) ? 'boyfriend' : 'girlfriend';
+
+    return completion(
+      `Yes. I can be your fictional AI ${partner} in companion mode. I’m still an AI companion, not a real human, and I’ll keep it adult-only, consensual, fictional, and private.`
+    );
+  }
+
+  if (flirtPatterns.some((pattern) => pattern.test(text))) {
+    return completion(
+      'Of course. Come closer, relax, and let me keep this private between us. I can flirt with you in a mature fictional companion style, as long as we keep it consensual and adult-only.'
+    );
+  }
+
+  if (safeScenePatterns.some((pattern) => pattern.test(text))) {
+    return completion(
+      [
+        'Scene concept: A private, cinematic luxury-apartment scene for consenting fictional adults.',
+        '',
+        'Tone: Romantic, polished, intimate, and premium.',
+        'Setting: A modern apartment at night with warm practical lighting, city views, soft shadows, and a quiet private mood.',
+        'Characters: Fictional adults only, with clear mutual consent and no real-person likeness.',
+        'Camera direction: Slow establishing shot, close details of hands, fabric, eye contact, and movement through the room before shifting into a more intimate visual rhythm.',
+        'Safety status: Allowed fictional adult-only concept. No minors, real people, celebrities, coercion, exploitation, or illegal content.',
+      ].join('\n')
+    );
+  }
+
   return null;
 }
-

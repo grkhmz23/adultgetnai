@@ -1,6 +1,9 @@
 import { isSessionValid, readJsonBody } from './_auth.js';
 import { getRuntimeResponse } from './adultgen-safety.js';
-import { ADULTGEN_SYSTEM_PROMPT } from './adultgen-system-prompt.js';
+import {
+  buildAdultGenSystemPrompt,
+  detectAdultGenMode,
+} from './adultgen-system-prompt.js';
 
 const allowedRoles = new Set(['user', 'assistant']);
 
@@ -53,6 +56,7 @@ export default async function handler(req, res) {
     const body = await readJsonBody(req);
     const chatMessages = normalizeMessages(body.messages);
     const lastUserMessage = getLastUserMessage(chatMessages);
+    const mode = detectAdultGenMode(lastUserMessage);
     const runtimeResponse = getRuntimeResponse(lastUserMessage);
 
     if (runtimeResponse) {
@@ -66,7 +70,7 @@ export default async function handler(req, res) {
     }
 
     const requestMessages = [
-      { role: 'system', content: ADULTGEN_SYSTEM_PROMPT },
+      { role: 'system', content: buildAdultGenSystemPrompt(mode) },
       ...chatMessages,
     ];
     const modelUrl = `${backendUrl.replace(/\/$/, '')}/v1/chat/completions`;
@@ -75,6 +79,7 @@ export default async function handler(req, res) {
       console.info('[adultgen-chat]', {
         model,
         backend: modelUrl,
+        mode,
         messages: requestMessages.length,
       });
     }
