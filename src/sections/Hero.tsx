@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { requestEarlyAccess } from '../lib/requestEarlyAccess';
 
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -88,7 +89,11 @@ export default function Hero() {
             placeholder="Describe your scene..."
             className="flex-1 bg-transparent text-sm text-[#121212] placeholder:text-[#aaaaaa] outline-none pr-3"
           />
-          <button className="bg-[#121212] text-white text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg shrink-0">
+          <button
+            type="button"
+            onClick={requestEarlyAccess}
+            className="bg-[#121212] text-white text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg shrink-0"
+          >
             Generate
             <ArrowRight size={14} />
           </button>

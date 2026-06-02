@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
+import { requestEarlyAccess } from '../lib/requestEarlyAccess';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -46,7 +47,11 @@ export default function Header() {
 
         {/* CTA */}
         <div className="hidden md:block">
-          <button className="bg-[#121212] text-white text-sm font-medium px-5 py-2 rounded-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+          <button
+            type="button"
+            onClick={requestEarlyAccess}
+            className="bg-[#121212] text-white text-sm font-medium px-5 py-2 rounded-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+          >
             Get Started
           </button>
         </div>
@@ -74,7 +79,11 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <button className="bg-[#121212] text-white text-sm font-medium px-5 py-2.5 rounded-full w-full mt-2">
+            <button
+              type="button"
+              onClick={requestEarlyAccess}
+              className="bg-[#121212] text-white text-sm font-medium px-5 py-2.5 rounded-full w-full mt-2"
+            >
               Get Started
             </button>
           </nav>
