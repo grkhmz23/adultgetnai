@@ -1,4 +1,5 @@
 import { isSessionValid, readJsonBody } from './_auth.js';
+import { enrichChatCompletionPayload } from './chat-format.js';
 import { getRuntimeResponse } from './adultgen-safety.js';
 import {
   buildAdultGenSystemPrompt,
@@ -34,14 +35,12 @@ function detectPersonaFromMessages(messages) {
     .filter((message) => message.role === 'user')
     .map((message) => message.content);
 
-  // Newest user turn first, then full thread — keeps stepdad when later message is only "Daddy"
-  const searchOrder = [
-    ...[...userTexts].reverse(),
-    userTexts.join('\n'),
-  ];
+  const combined = userTexts.join('\n');
+  const fromThread = detectAdultGenPersona(combined);
+  if (fromThread) return fromThread;
 
-  for (const text of searchOrder) {
-    const persona = detectAdultGenPersona(text);
+  for (let index = userTexts.length - 1; index >= 0; index -= 1) {
+    const persona = detectAdultGenPersona(userTexts[index]);
     if (persona) return persona;
   }
 
@@ -135,14 +134,31 @@ export default async function handler(req, res) {
         model,
         messages: requestMessages,
         max_tokens: body.max_tokens ?? 1024,
-        temperature: body.temperature ?? 0.85,
+        temperature: body.temperature ?? 0.9,
+        top_p: body.top_p ?? 0.92,
+        repetition_penalty: body.repetition_penalty ?? 1.08,
       }),
     });
 
     const text = await response.text();
+    let enriched = text;
+    if (response.ok && mode === 'companion') {
+      enriched = enrichChatCompletionPayload(text);
+      try {
+        const payload = JSON.parse(enriched);
+        payload.adultgen = {
+          persona_id: persona?.id ?? null,
+          persona_name: persona?.displayName ?? null,
+        };
+        enriched = JSON.stringify(payload);
+      } catch {
+        /* keep enriched text */
+      }
+    }
+
     res.status(response.status);
     res.setHeader('Content-Type', response.headers.get('content-type') || 'application/json');
-    res.send(text);
+    res.send(enriched);
   } catch {
     res.status(502).json({ ok: false, error: 'Backend request failed' });
   }

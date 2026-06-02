@@ -1,19 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { Image, MessageCircle, Video } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
+import { bubblesFromAssistantMessage } from '../lib/chatBubbles';
 
 type ChatMessage = {
   role: 'user' | 'assistant';
   content: string;
+  bubbles?: string[];
 };
 
 type CompletionResponse = {
   choices?: Array<{
     message?: {
       content?: string;
+      bubbles?: string[];
     };
   }>;
+  adultgen?: {
+    persona_id?: string | null;
+    persona_name?: string | null;
+  };
 };
 
 const modes = [
@@ -32,6 +39,8 @@ export default function InvestorDemo() {
   const [prompt, setPrompt] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [contactName, setContactName] = useState('AdultGen');
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -56,6 +65,10 @@ export default function InvestorDemo() {
       mounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
+  }, [messages, isLoading]);
 
   async function submitLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -122,13 +135,21 @@ export default function InvestorDemo() {
       }
 
       const data = (await response.json()) as CompletionResponse;
-      const content = data.choices?.[0]?.message?.content?.trim();
+      const bubbleList = bubblesFromAssistantMessage(data);
+      const content = bubbleList.join('\n\n');
 
       if (!content) {
         throw new Error('Backend returned an empty response');
       }
 
-      setMessages([...nextMessages, { role: 'assistant', content }]);
+      if (data.adultgen?.persona_name) {
+        setContactName(data.adultgen.persona_name.replace(/\s*\([^)]*\)\s*$/, '').trim());
+      }
+
+      setMessages([
+        ...nextMessages,
+        { role: 'assistant', content, bubbles: bubbleList.length > 1 ? bubbleList : undefined },
+      ]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Backend request failed');
       setMessages(nextMessages);
@@ -204,6 +225,7 @@ export default function InvestorDemo() {
               });
               setAuthenticated(false);
               setMessages([]);
+              setContactName('AdultGen');
             }}
             className="rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-[#121212]"
           >
@@ -211,26 +233,41 @@ export default function InvestorDemo() {
           </button>
         </header>
 
-        <section className="glass-card flex min-h-0 flex-1 flex-col overflow-hidden">
-          <div className="flex-1 space-y-4 overflow-y-auto p-4">
-            {messages.map((message, index) => (
-              <div
-                key={`${message.role}-${index}`}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <p
-                  className={`max-w-[78%] whitespace-pre-wrap rounded-3xl px-4 py-3 text-sm leading-relaxed ${
-                    message.role === 'user'
-                      ? 'bg-[#121212] text-white'
-                      : 'bg-white text-[#121212] shadow-[0_1px_12px_rgba(0,0,0,0.05)]'
-                  }`}
+        <section className="glass-card flex min-h-0 flex-1 flex-col overflow-hidden bg-[#e5ddd5]">
+          <div className="border-b border-black/5 bg-[#f0f0f0] px-4 py-3">
+            <p className="text-sm font-semibold text-[#121212]">{contactName}</p>
+            <p className="text-xs text-[#667781]">online</p>
+          </div>
+          <div ref={scrollRef} className="flex-1 space-y-2 overflow-y-auto p-4">
+            {messages.map((message, index) => {
+              const parts =
+                message.role === 'assistant' && message.bubbles?.length
+                  ? message.bubbles
+                  : [message.content];
+
+              return parts.map((part, partIndex) => (
+                <div
+                  key={`${message.role}-${index}-${partIndex}`}
+                  className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  {message.content}
+                  <p
+                    className={`max-w-[78%] whitespace-pre-wrap rounded-2xl px-3 py-2 text-[15px] leading-snug shadow-sm ${
+                      message.role === 'user'
+                        ? 'rounded-br-md bg-[#dcf8c6] text-[#111b21]'
+                        : 'rounded-bl-md bg-white text-[#111b21]'
+                    }`}
+                  >
+                    {part}
+                  </p>
+                </div>
+              ));
+            })}
+            {isLoading && (
+              <div className="flex justify-start">
+                <p className="rounded-2xl rounded-bl-md bg-white px-3 py-2 text-sm text-[#667781] shadow-sm">
+                  typing…
                 </p>
               </div>
-            ))}
-            {isLoading && (
-              <p className="text-sm text-[#888888]">Generating...</p>
             )}
             {error && (
               <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-600">
@@ -239,7 +276,7 @@ export default function InvestorDemo() {
             )}
           </div>
 
-          <form onSubmit={submitPrompt} className="border-t border-black/5 p-4">
+          <form onSubmit={submitPrompt} className="border-t border-black/5 bg-[#f0f0f0] p-4">
             <div className="flex flex-wrap sm:flex-nowrap gap-2">
               <div className="flex w-full shrink-0 items-center gap-1 sm:w-auto">
                 {modes.map((item) => {

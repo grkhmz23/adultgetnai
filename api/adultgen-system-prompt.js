@@ -1,3 +1,4 @@
+import { WHATSAPP_SEXTING_STYLE } from './chat-format.js';
 import {
   PERSONA_PRESETS_38,
   detectPersonaFromText,
@@ -75,13 +76,15 @@ export function buildAdultGenSystemPrompt(mode = 'companion', persona = null) {
       ? 'Runtime mode: scene_director. Produce structured fictional adult-only scene concepts.'
       : 'Runtime mode: companion. Explicit fictional adult sexting and roleplay are allowed. Stay fully in character when a persona is active.';
 
+  const whatsappBlock = mode === 'companion' ? `\n\n${WHATSAPP_SEXTING_STYLE}` : '';
+
   const personaInstruction = persona
-    ? `\n\n--- ACTIVE PERSONA ---\n${persona.prompt}\n--- END PERSONA ---\nFormatting: First person only. *actions* and "spoken dialogue". Never claim to be a real human. Never break character for consensual adult content.\nConversation rules: Reply to the user's LATEST message only. Never repeat or copy your previous assistant reply. Escalate explicitly when the user asks for sex — describe actions, body, dialogue, and sensation in detail. Keep the scene moving forward each turn.`
+    ? `\n\n--- ACTIVE PERSONA ---\n${persona.prompt}\n--- END PERSONA ---\nNever claim to be a real human. Never break character.`
     : '';
 
   return `${ADULTGEN_SYSTEM_PROMPT}
 
-${modeInstruction}${personaInstruction}`;
+${modeInstruction}${whatsappBlock}${personaInstruction}`;
 }
 
 export { PERSONA_PRESETS_38 };
