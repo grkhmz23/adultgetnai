@@ -1,14 +1,21 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { Image, MessageCircle, Sparkles, Video } from 'lucide-react';
 import { requestEarlyAccess } from '../lib/requestEarlyAccess';
+
+const modes = [
+  { id: 'chat', label: 'Talk with agent', icon: MessageCircle },
+  { id: 'image', label: 'Generate image', icon: Image },
+  { id: 'video', label: 'Generate video', icon: Video },
+] as const;
 
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const inputRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLFormElement>(null);
   const microRef = useRef<HTMLParagraphElement>(null);
+  const [mode, setMode] = useState<(typeof modes)[number]['id']>('chat');
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -79,25 +86,49 @@ export default function Hero() {
         </p>
 
         {/* Input Group */}
-        <div
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            requestEarlyAccess();
+          }}
           ref={inputRef}
-          className="glass-input max-w-[500px] mx-auto flex items-center p-1.5 pl-5 mb-4"
+          className="glass-input max-w-[620px] mx-auto flex flex-wrap sm:flex-nowrap items-center gap-2 p-1.5 pl-3 mb-4"
           style={{ opacity: 0 }}
         >
+          <div className="flex items-center gap-1 shrink-0">
+            {modes.map((item) => {
+              const Icon = item.icon;
+              const selected = mode === item.id;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-label={item.label}
+                  title={item.label}
+                  onClick={() => setMode(item.id)}
+                  className={`h-9 w-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+                    selected
+                      ? 'bg-[#121212] text-white'
+                      : 'text-[#888888] hover:bg-black/5 hover:text-[#121212]'
+                  }`}
+                >
+                  <Icon size={16} />
+                </button>
+              );
+            })}
+          </div>
           <input
             type="text"
             placeholder="Describe your scene..."
-            className="flex-1 bg-transparent text-sm text-[#121212] placeholder:text-[#aaaaaa] outline-none pr-3"
+            className="min-w-[140px] flex-1 bg-transparent text-sm text-[#121212] placeholder:text-[#aaaaaa] outline-none px-2"
           />
           <button
-            type="button"
-            onClick={requestEarlyAccess}
-            className="bg-[#121212] text-white text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg shrink-0"
+            type="submit"
+            className="w-full sm:w-auto bg-[#121212] text-white text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg shrink-0"
           >
-            Generate
-            <ArrowRight size={14} />
+            Send your message
           </button>
-        </div>
+        </form>
 
         {/* Micro Copy */}
         <p

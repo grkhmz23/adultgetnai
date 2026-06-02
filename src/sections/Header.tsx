@@ -46,14 +46,20 @@ export default function Header() {
         </nav>
 
         {/* CTA */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-3">
           <button
             type="button"
             onClick={requestEarlyAccess}
             className="bg-[#121212] text-white text-sm font-medium px-5 py-2 rounded-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
           >
-            Get Started
+            Request Early Access
           </button>
+          <a
+            href="/investor-demo"
+            className="border border-black/10 bg-white/60 text-[#121212] text-sm font-medium px-5 py-2 rounded-full transition-all duration-300 hover:scale-[1.02] hover:bg-white"
+          >
+            Beta Access
+          </a>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -84,8 +90,14 @@ export default function Header() {
               onClick={requestEarlyAccess}
               className="bg-[#121212] text-white text-sm font-medium px-5 py-2.5 rounded-full w-full mt-2"
             >
-              Get Started
+              Request Early Access
             </button>
+            <a
+              href="/investor-demo"
+              className="border border-black/10 bg-white text-[#121212] text-sm font-medium px-5 py-2.5 rounded-full w-full text-center"
+            >
+              Beta Access
+            </a>
           </nav>
         </div>
       )}
