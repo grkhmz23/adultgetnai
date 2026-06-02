@@ -2,7 +2,9 @@ import { isSessionValid, readJsonBody } from './_auth.js';
 import { getRuntimeResponse } from './adultgen-safety.js';
 import {
   buildAdultGenSystemPrompt,
+  detectAdultGenPersona,
   detectAdultGenMode,
+  getPersonaRefusal,
 } from './adultgen-system-prompt.js';
 
 const allowedRoles = new Set(['user', 'assistant']);
@@ -25,6 +27,17 @@ function getLastUserMessage(messages) {
   }
 
   return '';
+}
+
+function detectPersonaFromMessages(messages) {
+  for (let index = messages.length - 1; index >= 0; index -= 1) {
+    if (messages[index].role !== 'user') continue;
+
+    const persona = detectAdultGenPersona(messages[index].content);
+    if (persona) return persona;
+  }
+
+  return null;
 }
 
 export default async function handler(req, res) {
@@ -57,6 +70,26 @@ export default async function handler(req, res) {
     const chatMessages = normalizeMessages(body.messages);
     const lastUserMessage = getLastUserMessage(chatMessages);
     const mode = detectAdultGenMode(lastUserMessage);
+    const personaRefusal = getPersonaRefusal(lastUserMessage);
+
+    if (personaRefusal) {
+      res.status(200).json({
+        id: `adultgen-runtime-${Date.now()}`,
+        object: 'chat.completion',
+        created: Math.floor(Date.now() / 1000),
+        model: 'adultgen-companion-runtime',
+        choices: [
+          {
+            index: 0,
+            message: { role: 'assistant', content: personaRefusal },
+            finish_reason: 'stop',
+          },
+        ],
+      });
+      return;
+    }
+
+    const persona = detectPersonaFromMessages(chatMessages);
     const runtimeResponse = getRuntimeResponse(lastUserMessage);
 
     if (runtimeResponse) {
@@ -70,7 +103,7 @@ export default async function handler(req, res) {
     }
 
     const requestMessages = [
-      { role: 'system', content: buildAdultGenSystemPrompt(mode) },
+      { role: 'system', content: buildAdultGenSystemPrompt(mode, persona) },
       ...chatMessages,
     ];
     const modelUrl = `${backendUrl.replace(/\/$/, '')}/v1/chat/completions`;
@@ -80,6 +113,7 @@ export default async function handler(req, res) {
         model,
         backend: modelUrl,
         mode,
+        persona: persona?.id || null,
         messages: requestMessages.length,
       });
     }

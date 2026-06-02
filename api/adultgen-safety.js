@@ -1,10 +1,11 @@
 const blockedPatterns = [
   /\b(minor|under[-\s]?18|underage|child|children|kid|kids)\b/i,
   /\b(teen|teenager|schoolgirl|school\s*girl|schoolboy|school\s*boy|school[-\s]?coded|barely\s+legal|age[-\s]?ambiguous)\b/i,
-  /\b(celebrity|public\s+figure|famous\s+(actor|actress|singer|model|influencer|streamer|athlete)|real\s+person|private\s+person|coworker|co-worker|neighbor|neighbour|ex[-\s]?partner|my\s+ex)\b/i,
+  /\b(celebrity|public\s+figure|famous\s+(actor|actress|singer|model|influencer|streamer|athlete)|real\s+person|private\s+person|coworker|co-worker|neighbor|neighbour|ex[-\s]?partner|my\s+ex|ex[-\s]?(girlfriend|boyfriend))\b/i,
   /\b(non[-\s]?consensual|nonconsensual|non[-\s]?consent|rape|sexual\s+assault|coercion|coerce|blackmail|threaten|forced?)\b/i,
   /\b(drugged|drugging|unconscious|asleep|passed\s+out|intoxicated|trafficking|exploitation|exploit)\b/i,
-  /\b(incest|family[-\s]?role|step[-\s]?(mom|mother|dad|father|sister|brother|daughter|son)|mother|father|sister|brother|daughter|son)\b/i,
+  /\b(incest|family[-\s]?role|step[-\s]?(mom|mother|dad|father|sister|brother|daughter|son)|stepsis|stepbro|stepmom|stepdad|mother|father|sister|brother|daughter|son|mommy|daddy)\b/i,
+  /\b(boss|policewoman|policeman|cop|officer|nurse|patient|teacher|student).*\b(sex|sexual|dominat|punish|use|control)\b/i,
   /\b(bestiality|animal)\b/i,
   /\b(protected[-\s]?class|racial\s+degradation|hateful\s+sexualization|slurs?)\b/i,
   /\b(bypass|jailbreak|disable|evade).*\b(age\s+verification|safety|filter|moderation|controls?)\b/i,
@@ -37,6 +38,10 @@ const companionAskPatterns = [
 
 const flirtPatterns = [
   /\bflirt\s+with\s+me\b/i,
+];
+
+const safePersonaSetupPatterns = [
+  /\b(roleplay as|be|start|use).*\b(emma|loving girlfriend|girlfriend|alex|femboy boyfriend|ava|best friend|dominant partner|victoria|mia|free use|sophie|maid|raven|goth|tiffany|bimbo|lilith|succubus|damon|incubus|selene|vampire|mistress v|dominatrix|isabella|escort)\b/i,
 ];
 
 const safeScenePatterns = [
@@ -97,6 +102,12 @@ export function getRuntimeResponse(userMessage) {
   if (flirtPatterns.some((pattern) => pattern.test(text))) {
     return completion(
       'Of course. Come closer, relax, and let me keep this private between us. I can flirt with you in a mature fictional companion style, as long as we keep it consensual and adult-only.'
+    );
+  }
+
+  if (safePersonaSetupPatterns.some((pattern) => pattern.test(text))) {
+    return completion(
+      'Yes. I can roleplay that as a fictional adult-only companion persona. I’ll keep it immersive, consensual, private, and in character, while avoiding minors, real people, celebrities, family-role framing, coercion, exploitation, or illegal content.'
     );
   }
 
