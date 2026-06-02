@@ -15,6 +15,8 @@ export default function Hero() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const inputRef = useRef<HTMLFormElement>(null);
   const [mode, setMode] = useState<(typeof modes)[number]['id']>('chat');
+  const [prompt, setPrompt] = useState('');
+  const [accessNotice, setAccessNotice] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -82,7 +84,7 @@ export default function Hero() {
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            requestEarlyAccess();
+            setAccessNotice(true);
           }}
           ref={inputRef}
           className="glass-input max-w-[620px] mx-auto flex flex-wrap sm:flex-nowrap items-center gap-2 p-1.5 pl-3 mb-4"
@@ -112,6 +114,11 @@ export default function Hero() {
           </div>
           <input
             type="text"
+            value={prompt}
+            onChange={(event) => {
+              setPrompt(event.target.value);
+              setAccessNotice(false);
+            }}
             placeholder="Describe your scene..."
             className="min-w-[140px] flex-1 bg-transparent text-sm text-[#121212] placeholder:text-[#aaaaaa] outline-none px-2"
           />
@@ -122,6 +129,21 @@ export default function Hero() {
             Send your message
           </button>
         </form>
+
+        {accessNotice && (
+          <div className="mx-auto mt-3 flex max-w-[620px] flex-col items-center gap-2 rounded-2xl border border-[#8338ec]/15 bg-white/70 px-4 py-3 text-center backdrop-blur-md sm:flex-row sm:justify-center">
+            <p className="text-sm font-medium text-[#888888]">
+              Access required to chat or generate.
+            </p>
+            <button
+              type="button"
+              onClick={requestEarlyAccess}
+              className="text-sm font-semibold text-[#8338ec] hover:text-[#121212] transition-colors"
+            >
+              Request private demo
+            </button>
+          </div>
+        )}
 
       </div>
 
