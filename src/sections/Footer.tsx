@@ -1,18 +1,30 @@
-import { Github, Twitter } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
 
 const footerLinks = [
   {
     title: 'Product',
-    links: ['Features', 'Studio', 'Models', 'Pricing', 'Changelog'],
-  },
-  {
-    title: 'Resources',
-    links: ['Documentation', 'API Reference', 'Tutorials', 'Blog'],
+    links: [
+      { label: 'Overview', href: '/' },
+      { label: 'Private Demo', href: '/contact' },
+      { label: 'Investor Deck', href: '/contact' },
+      { label: 'Compliance', href: '/content-policy' },
+    ],
   },
   {
     title: 'Company',
-    links: ['About', 'Careers', 'Contact', 'Terms', 'Privacy'],
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Careers', href: '/careers' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Terms', href: '/terms' },
+      { label: 'Privacy', href: '/privacy' },
+      { label: 'Content Policy', href: '/content-policy' },
+    ],
   },
 ];
 
@@ -25,27 +37,13 @@ export default function Footer() {
       <div className="max-w-[1400px] mx-auto px-6 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Logo & Description */}
-          <div className="md:col-span-4">
-            <a href="#" className="inline-flex mb-4" aria-label="AdultGen AI home">
-              <BrandLogo />
+          <div className="md:col-span-5">
+            <a href="/" className="inline-flex mb-4" aria-label="AdultGen AI home">
+              <BrandLogo compact />
             </a>
             <p className="text-sm text-[#888888] max-w-[280px] leading-relaxed mb-6">
-              The most advanced AI-powered platform for creating photorealistic adult content. Private, secure, and lightning-fast.
+              Video-first synthetic media for verified adults. Private by design, synthetic by default, and built with compliance controls from day one.
             </p>
-            <div className="flex items-center gap-3">
-              <a
-                href="#"
-                className="w-9 h-9 rounded-full bg-black/5 flex items-center justify-center text-[#888888] hover:text-[#121212] hover:bg-black/10 transition-all duration-300"
-              >
-                <Twitter size={16} />
-              </a>
-              <a
-                href="#"
-                className="w-9 h-9 rounded-full bg-black/5 flex items-center justify-center text-[#888888] hover:text-[#121212] hover:bg-black/10 transition-all duration-300"
-              >
-                <Github size={16} />
-              </a>
-            </div>
           </div>
 
           {/* Link Columns */}
@@ -56,12 +54,12 @@ export default function Footer() {
               </h4>
               <ul className="space-y-3">
                 {column.links.map((link) => (
-                  <li key={link}>
+                  <li key={link.label}>
                     <a
-                      href="#"
+                      href={link.href}
                       className="text-sm text-[#888888] hover:text-[#121212] transition-colors duration-300"
                     >
-                      {link}
+                      {link.label}
                     </a>
                   </li>
                 ))}
@@ -73,10 +71,10 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[#aaaaaa]">
-            &copy; 2025 AdultGen AI. All rights reserved.
+            &copy; 2026 AdultGen AI. All rights reserved.
           </p>
           <p className="text-xs text-[#aaaaaa]">
-            AI-POWERED. PERSONALIZED. PRIVATE.
+            AdultGen is in private development. Public generation is not available on this website.
           </p>
         </div>
       </div>

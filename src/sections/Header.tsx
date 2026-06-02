@@ -16,9 +16,9 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { label: 'Features', href: '#features' },
-    { label: 'Studio', href: '#studio' },
-    { label: 'Models', href: '#models' },
+    { label: 'Overview', href: '/' },
+    { label: 'Compliance', href: '/content-policy' },
+    { label: 'About', href: '/about' },
   ];
 
   return (
@@ -32,7 +32,7 @@ export default function Header() {
     >
       <div className="max-w-[1400px] mx-auto h-full flex items-center justify-between px-6">
         {/* Logo */}
-        <a href="#" aria-label="AdultGen AI home">
+        <a href="/" aria-label="AdultGen AI home">
           <BrandLogo compact />
         </a>
 
