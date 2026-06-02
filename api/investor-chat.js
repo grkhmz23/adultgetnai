@@ -30,10 +30,18 @@ function getLastUserMessage(messages) {
 }
 
 function detectPersonaFromMessages(messages) {
-  for (let index = messages.length - 1; index >= 0; index -= 1) {
-    if (messages[index].role !== 'user') continue;
+  const userTexts = messages
+    .filter((message) => message.role === 'user')
+    .map((message) => message.content);
 
-    const persona = detectAdultGenPersona(messages[index].content);
+  // Newest user turn first, then full thread — keeps stepdad when later message is only "Daddy"
+  const searchOrder = [
+    ...[...userTexts].reverse(),
+    userTexts.join('\n'),
+  ];
+
+  for (const text of searchOrder) {
+    const persona = detectAdultGenPersona(text);
     if (persona) return persona;
   }
 
@@ -90,7 +98,9 @@ export default async function handler(req, res) {
     }
 
     const persona = detectPersonaFromMessages(chatMessages);
-    const runtimeResponse = getRuntimeResponse(lastUserMessage);
+    const runtimeResponse = getRuntimeResponse(lastUserMessage, {
+      messages: chatMessages,
+    });
 
     if (runtimeResponse) {
       res.status(200).json(runtimeResponse);
@@ -124,8 +134,8 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model,
         messages: requestMessages,
-        max_tokens: body.max_tokens ?? 512,
-        temperature: body.temperature ?? 0.7,
+        max_tokens: body.max_tokens ?? 1024,
+        temperature: body.temperature ?? 0.85,
       }),
     });
 

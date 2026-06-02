@@ -112,8 +112,8 @@ export default function InvestorDemo() {
             role: message.role,
             content: message.content,
           })),
-          max_tokens: 512,
-          temperature: 0.7,
+          max_tokens: 1024,
+          temperature: 0.85,
         }),
       });
 
