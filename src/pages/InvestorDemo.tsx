@@ -161,6 +161,12 @@ export default function InvestorDemo() {
   if (checkingSession) {
     return (
       <main className="min-h-screen bg-[#fbfbfb] flex items-center justify-center px-6">
+        <a
+          href="/"
+          className="absolute left-6 top-6 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm font-medium text-[#121212] transition-colors hover:bg-white"
+        >
+          Back to home
+        </a>
         <p className="text-sm text-[#888888]">Checking access...</p>
       </main>
     );
@@ -169,11 +175,19 @@ export default function InvestorDemo() {
   if (!authenticated) {
     return (
       <main className="min-h-screen bg-[#fbfbfb] flex items-center justify-center px-6">
+        <a
+          href="/"
+          className="absolute left-6 top-6 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm font-medium text-[#121212] transition-colors hover:bg-white"
+        >
+          Back to home
+        </a>
         <form
           onSubmit={submitLogin}
           className="glass-card w-full max-w-[420px] p-8"
         >
-          <BrandLogo className="mb-8" />
+          <a href="/" aria-label="AdultGen AI home">
+            <BrandLogo className="mb-8" />
+          </a>
           <label className="block text-sm font-medium text-[#121212] mb-2">
             Login
           </label>
@@ -215,22 +229,32 @@ export default function InvestorDemo() {
     <main className="min-h-screen bg-[#fbfbfb] px-6 py-8">
       <div className="mx-auto flex min-h-[calc(100vh-64px)] max-w-[960px] flex-col">
         <header className="mb-6 flex items-center justify-between gap-4">
-          <BrandLogo compact />
-          <button
-            type="button"
-            onClick={async () => {
-              await fetch('/api/investor-logout', {
-                method: 'POST',
-                credentials: 'include',
-              });
-              setAuthenticated(false);
-              setMessages([]);
-              setContactName('AdultGen');
-            }}
-            className="rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-[#121212]"
-          >
-            Lock
-          </button>
+          <a href="/" aria-label="AdultGen AI home">
+            <BrandLogo compact />
+          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="/"
+              className="rounded-full border border-black/10 bg-white/60 px-4 py-2 text-sm font-medium text-[#121212] transition-colors hover:bg-white"
+            >
+              Back to home
+            </a>
+            <button
+              type="button"
+              onClick={async () => {
+                await fetch('/api/investor-logout', {
+                  method: 'POST',
+                  credentials: 'include',
+                });
+                setAuthenticated(false);
+                setMessages([]);
+                setContactName('AdultGen');
+              }}
+              className="rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-[#121212]"
+            >
+              Lock
+            </button>
+          </div>
         </header>
 
         <section className="glass-card flex min-h-0 flex-1 flex-col overflow-hidden bg-[#e5ddd5]">
