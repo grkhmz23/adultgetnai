@@ -51,13 +51,6 @@ export default function Hero() {
       style={{ zIndex: 1 }}
     >
       <div className="max-w-[800px] mx-auto text-center">
-        {/* Eyebrow */}
-        <div className="inline-flex items-center bg-white/60 backdrop-blur-md border border-black/8 rounded-full px-4 py-1.5 mb-8">
-          <span className="text-xs font-medium text-[#888888] tracking-wide">
-            The video-first AI layer for adult entertainment
-          </span>
-        </div>
-
         {/* Heading */}
         <h1
           ref={headingRef}

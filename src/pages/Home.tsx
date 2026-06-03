@@ -3,7 +3,6 @@ import Header from '../sections/Header';
 import Hero from '../sections/Hero';
 import InfiniteMediaWall from '../sections/InfiniteMediaWall';
 import FeatureShowcase from '../sections/FeatureShowcase';
-import FlipReveal from '../sections/FlipReveal';
 import Footer from '../sections/Footer';
 
 export default function Home() {
@@ -20,7 +19,6 @@ export default function Home() {
         <Hero />
         <InfiniteMediaWall />
         <FeatureShowcase />
-        <FlipReveal />
       </main>
 
       {/* Footer */}
