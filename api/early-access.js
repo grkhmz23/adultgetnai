@@ -1,6 +1,6 @@
 import { readJsonBody } from './_auth.js';
 
-const contactEmail = 'info@adultgen.fun';
+const defaultContactEmail = 'info@adultgen.fun';
 const maxFieldLength = 4000;
 
 function clean(value) {
@@ -16,7 +16,7 @@ function getEmailDomain(address = '') {
   return match?.[1]?.toLowerCase() || '';
 }
 
-function buildMailtoHref({ name, email, message }) {
+function buildMailtoHref({ name, email, message, to = defaultContactEmail }) {
   const subject = encodeURIComponent('AdultGen AI Early Access');
   const body = encodeURIComponent(
     [
@@ -32,7 +32,7 @@ function buildMailtoHref({ name, email, message }) {
     ].join('\n')
   );
 
-  return `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+  return `mailto:${to}?subject=${subject}&body=${body}`;
 }
 
 function buildEmailHtml({ name, email, message }) {
@@ -81,14 +81,14 @@ export default async function handler(req, res) {
     }
 
     const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.EARLY_ACCESS_TO_EMAIL || contactEmail;
+    const to = process.env.EARLY_ACCESS_TO_EMAIL || defaultContactEmail;
     const from = process.env.EARLY_ACCESS_FROM_EMAIL;
 
     if (!apiKey || !from) {
       res.status(501).json({
         ok: false,
         error: 'Email delivery is not configured yet.',
-        mailtoHref: buildMailtoHref({ name, email, message }),
+        mailtoHref: buildMailtoHref({ name, email, message, to }),
       });
       return;
     }
@@ -99,7 +99,7 @@ export default async function handler(req, res) {
         ok: false,
         error:
           'Email sender is not configured. Resend cannot send from gmail.com. Use a verified adultgen.fun sender address.',
-        mailtoHref: buildMailtoHref({ name, email, message }),
+        mailtoHref: buildMailtoHref({ name, email, message, to }),
       });
       return;
     }
@@ -134,7 +134,7 @@ export default async function handler(req, res) {
       res.status(502).json({
         ok: false,
         error: 'Email provider failed. Please verify the Resend sender domain.',
-        mailtoHref: buildMailtoHref({ name, email, message }),
+        mailtoHref: buildMailtoHref({ name, email, message, to }),
       });
       return;
     }
