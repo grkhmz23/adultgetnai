@@ -11,6 +11,11 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function getEmailDomain(address = '') {
+  const match = String(address).match(/@([^>\s]+)>?$/);
+  return match?.[1]?.toLowerCase() || '';
+}
+
 function buildMailtoHref({ name, email, message }) {
   const subject = encodeURIComponent('AdultGen AI Early Access');
   const body = encodeURIComponent(
@@ -88,6 +93,17 @@ export default async function handler(req, res) {
       return;
     }
 
+    const fromDomain = getEmailDomain(from);
+    if (fromDomain === 'gmail.com') {
+      res.status(501).json({
+        ok: false,
+        error:
+          'Email sender is not configured. Resend cannot send from gmail.com. Use a verified adultgen.fun sender address.',
+        mailtoHref: buildMailtoHref({ name, email, message }),
+      });
+      return;
+    }
+
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -115,7 +131,11 @@ export default async function handler(req, res) {
     if (!response.ok) {
       const details = await response.text();
       console.error('[early-access] email provider failed', details);
-      res.status(502).json({ ok: false, error: 'Email provider failed. Please try again.' });
+      res.status(502).json({
+        ok: false,
+        error: 'Email provider failed. Please verify the Resend sender domain.',
+        mailtoHref: buildMailtoHref({ name, email, message }),
+      });
       return;
     }
 
