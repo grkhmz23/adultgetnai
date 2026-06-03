@@ -1,22 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { Image, MessageCircle, Video } from 'lucide-react';
 import { requestEarlyAccess } from '../lib/requestEarlyAccess';
-
-const modes = [
-  { id: 'chat', label: 'Talk with agent', icon: MessageCircle },
-  { id: 'image', label: 'Generate image', icon: Image },
-  { id: 'video', label: 'Generate video', icon: Video },
-] as const;
 
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const inputRef = useRef<HTMLFormElement>(null);
-  const [mode, setMode] = useState<(typeof modes)[number]['id']>('chat');
-  const [prompt, setPrompt] = useState('');
-  const [accessNotice, setAccessNotice] = useState(false);
+  const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -34,7 +24,7 @@ export default function Hero() {
           '-=0.5'
         )
         .fromTo(
-          inputRef.current,
+          ctaRef.current,
           { y: 30, opacity: 0, scale: 0.95 },
           { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'power3.out' },
           '-=0.4'
@@ -73,70 +63,26 @@ export default function Hero() {
           safety, consent controls, and AI transparency from day one.
         </p>
 
-        {/* Input Group */}
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            setAccessNotice(true);
-          }}
-          ref={inputRef}
-          className="glass-input max-w-[620px] mx-auto flex flex-wrap sm:flex-nowrap items-center gap-2 p-1.5 pl-3 mb-4"
+        {/* Access actions */}
+        <div
+          ref={ctaRef}
+          className="mx-auto flex max-w-[520px] flex-col items-center justify-center gap-3 sm:flex-row"
           style={{ opacity: 0 }}
         >
-          <div className="flex items-center gap-1 shrink-0">
-            {modes.map((item) => {
-              const Icon = item.icon;
-              const selected = mode === item.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  aria-label={item.label}
-                  title={item.label}
-                  onClick={() => setMode(item.id)}
-                  className={`h-9 w-9 rounded-full flex items-center justify-center transition-all duration-300 ${
-                    selected
-                      ? 'bg-[#121212] text-white'
-                      : 'text-[#888888] hover:bg-black/5 hover:text-[#121212]'
-                  }`}
-                >
-                  <Icon size={16} />
-                </button>
-              );
-            })}
-          </div>
-          <input
-            type="text"
-            value={prompt}
-            onChange={(event) => {
-              setPrompt(event.target.value);
-              setAccessNotice(false);
-            }}
-            placeholder="Describe your scene..."
-            className="min-w-[140px] flex-1 bg-transparent text-sm text-[#121212] placeholder:text-[#aaaaaa] outline-none px-2"
-          />
           <button
-            type="submit"
-            className="w-full sm:w-auto bg-[#121212] text-white text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg shrink-0"
+            type="button"
+            onClick={requestEarlyAccess}
+            className="w-full rounded-full bg-[#121212] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg sm:w-auto"
           >
-            Send your message
+            Request Early Access
           </button>
-        </form>
-
-        {accessNotice && (
-          <div className="mx-auto mt-3 flex max-w-[620px] flex-col items-center gap-2 rounded-2xl border border-[#8338ec]/15 bg-white/70 px-4 py-3 text-center backdrop-blur-md sm:flex-row sm:justify-center">
-            <p className="text-sm font-medium text-[#888888]">
-              Access required to chat or generate.
-            </p>
-            <button
-              type="button"
-              onClick={requestEarlyAccess}
-              className="text-sm font-semibold text-[#8338ec] hover:text-[#121212] transition-colors"
-            >
-              Request private demo
-            </button>
-          </div>
-        )}
+          <a
+            href="/investor-demo"
+            className="w-full rounded-full border border-black/10 bg-white/70 px-6 py-3 text-sm font-semibold text-[#121212] transition-all duration-300 hover:scale-[1.02] hover:bg-white sm:w-auto"
+          >
+            Beta Access
+          </a>
+        </div>
 
       </div>
 
