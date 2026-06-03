@@ -1,12 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { FormEvent } from 'react';
 import gsap from 'gsap';
-import { requestEarlyAccess } from '../lib/requestEarlyAccess';
+import { adultgenConfig } from '../lib/runtimeConfig';
+
+type FormStatus = 'idle' | 'submitting' | 'sent' | 'error';
 
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -33,6 +38,46 @@ export default function Hero() {
 
     return () => ctx.revert();
   }, []);
+
+  async function handleEarlyAccessSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus('submitting');
+    setError('');
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get('name') || '').trim(),
+      email: String(formData.get('email') || '').trim(),
+      message: String(formData.get('message') || '').trim(),
+      companyWebsite: String(formData.get('company_website') || '').trim(),
+    };
+
+    try {
+      const response = await fetch('/api/early-access', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        if (data?.mailtoHref) {
+          window.location.href = data.mailtoHref;
+          setStatus('idle');
+          return;
+        }
+
+        throw new Error(data?.error || 'Request could not be sent');
+      }
+
+      form.reset();
+      setStatus('sent');
+    } catch (err) {
+      setStatus('error');
+      setError(err instanceof Error ? err.message : 'Request could not be sent');
+    }
+  }
 
   return (
     <section
@@ -63,25 +108,95 @@ export default function Hero() {
           safety, consent controls, and AI transparency from day one.
         </p>
 
-        {/* Access actions */}
+        {/* Access form */}
         <div
+          id="early-access"
           ref={ctaRef}
-          className="mx-auto flex max-w-[520px] flex-col items-center justify-center gap-3 sm:flex-row"
+          className="glass-card mx-auto max-w-[620px] p-3 text-left"
           style={{ opacity: 0 }}
         >
-          <button
-            type="button"
-            onClick={requestEarlyAccess}
-            className="w-full rounded-full bg-[#121212] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg sm:w-auto"
+          <form
+            onSubmit={handleEarlyAccessSubmit}
+            className="grid gap-3"
           >
-            Request Early Access
-          </button>
-          <a
-            href="/investor-demo"
-            className="w-full rounded-full border border-black/10 bg-white/70 px-6 py-3 text-sm font-semibold text-[#121212] transition-all duration-300 hover:scale-[1.02] hover:bg-white sm:w-auto"
-          >
-            Beta Access
-          </a>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <label className="sr-only" htmlFor="early-access-name">
+                Name
+              </label>
+              <input
+                id="early-access-name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+                placeholder="Name"
+                className="min-h-12 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-[#121212] outline-none transition-colors placeholder:text-[#aaaaaa] focus:border-[#8338ec]/45"
+              />
+              <label className="sr-only" htmlFor="early-access-email">
+                Email
+              </label>
+              <input
+                id="early-access-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                placeholder="Email"
+                className="min-h-12 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-[#121212] outline-none transition-colors placeholder:text-[#aaaaaa] focus:border-[#8338ec]/45"
+              />
+            </div>
+            <label className="sr-only" htmlFor="early-access-message">
+              Message
+            </label>
+            <textarea
+              id="early-access-message"
+              name="message"
+              required
+              rows={3}
+              placeholder="Tell us who you are and why you want access."
+              className="min-h-24 resize-none rounded-2xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-[#121212] outline-none transition-colors placeholder:text-[#aaaaaa] focus:border-[#8338ec]/45"
+            />
+            <input
+              type="text"
+              name="company_website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+            />
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-h-5 text-center text-sm sm:text-left">
+                {status === 'sent' && (
+                  <span className="font-medium text-[#2f8a4c]">
+                    Request sent. We will review it privately.
+                  </span>
+                )}
+                {status === 'error' && (
+                  <span className="font-medium text-[#b42318]">
+                    {error}{' '}
+                    <a href={adultgenConfig.earlyAccessUrl} className="underline">
+                      Email us instead.
+                    </a>
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button
+                  type="submit"
+                  disabled={status === 'submitting'}
+                  className="rounded-full bg-[#121212] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {status === 'submitting' ? 'Sending...' : 'Request Early Access'}
+                </button>
+                <a
+                  href="/investor-demo"
+                  className="rounded-full border border-black/10 bg-white/70 px-6 py-3 text-center text-sm font-semibold text-[#121212] transition-all duration-300 hover:scale-[1.02] hover:bg-white"
+                >
+                  Beta Access
+                </a>
+              </div>
+            </div>
+          </form>
         </div>
 
       </div>
