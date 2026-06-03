@@ -6,14 +6,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const IMAGES = [
-  '/images/gallery-1.jpg',
-  '/images/gallery-2.jpg',
-  '/images/gallery-3.jpg',
-  '/images/gallery-4.jpg',
-  '/images/gallery-5.jpg',
-  '/images/gallery-6.jpg',
-  '/images/gallery-7.jpg',
-  '/images/gallery-8.jpg',
+  '/images/roadmap-wall-1.svg',
+  '/images/roadmap-wall-2.svg',
+  '/images/roadmap-wall-3.svg',
+  '/images/roadmap-wall-4.svg',
+  '/images/roadmap-wall-5.svg',
+  '/images/roadmap-wall-6.svg',
+  '/images/roadmap-wall-7.svg',
+  '/images/roadmap-wall-8.svg',
 ];
 
 export default function InfiniteMediaWall() {
@@ -205,12 +205,12 @@ export default function InfiniteMediaWall() {
                 textShadow: '0 2px 20px rgba(255,255,255,0.8)',
               }}
             >
-              The Infinite
+              Private Intent
               <br />
-              <span className="gradient-text">Studio</span>
+              <span className="gradient-text">To Synthetic Video</span>
             </h2>
             <p className="text-sm text-[#888888] mt-3 max-w-[280px] mx-auto">
-              Scroll to explore an endless gallery of AI-generated masterpieces
+              A consent-first roadmap from verified identity to structured scene direction and future private adult video generation.
             </p>
           </div>
         </div>
