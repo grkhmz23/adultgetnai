@@ -1,37 +1,46 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { User, Image, Video, ArrowUpRight } from 'lucide-react';
+import { Clapperboard, MessageCircle, ShieldCheck, UserRound, ArrowUpRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const features = [
   {
-    icon: User,
-    title: 'Character Creator',
+    icon: MessageCircle,
+    title: 'Private Companion',
     description:
-      'Design lifelike AI characters with granular control over appearance, personality, and expression. Export in multiple formats for any use case.',
-    image: '/images/character-creator.jpg',
-    tag: 'HeyGen Style',
+      'A private conversational layer for capturing user intent, tone, preference, and fantasy direction in an adult-only verified environment.',
+    image: '/images/image-studio.jpg',
+    tag: 'Private Demo',
     color: '#8338ec',
   },
   {
-    icon: Image,
-    title: 'Image Studio',
+    icon: UserRound,
+    title: 'Verified Digital Twin',
     description:
-      'Generate stunning, photorealistic images from text prompts. Style transfer, inpainting, and resolution upscaling built-in.',
-    image: '/images/image-studio.jpg',
-    tag: 'AI Generation',
+      'Roadmap feature for verified users to create a consent-bound self avatar, then use that digital twin in future private synthetic adult video workflows.',
+    image: '/images/character-creator.jpg',
+    tag: 'HeyGen-Style Roadmap',
     color: '#3a86ff',
   },
   {
-    icon: Video,
-    title: 'Video Studio',
+    icon: ShieldCheck,
+    title: 'Scene Director',
     description:
-      'Create cinematic video content with AI-powered motion, transitions, and effects. From concept to final cut in minutes.',
-    image: '/images/video-studio.jpg',
-    tag: 'Motion AI',
+      'Transforms natural language into structured fictional adult scene concepts, including setting, archetypes, mood, camera direction, and safety status.',
+    image: '/images/gallery-2.jpg',
+    tag: 'Prompt Engine',
     color: '#ff006e',
+  },
+  {
+    icon: Clapperboard,
+    title: 'Video Pipeline',
+    description:
+      'Planned short-form synthetic adult video layer built around fictional adults, self-avatar consent controls, AI labeling, and prompt/output safety.',
+    image: '/images/video-studio.jpg',
+    tag: 'Planned Generation',
+    color: '#121212',
   },
 ];
 
@@ -99,16 +108,16 @@ export default function FeatureShowcase() {
             className="text-[40px] md:text-[64px] font-semibold tracking-[-2px] text-[#121212] leading-tight"
             style={{ opacity: 0 }}
           >
-            Create{' '}
-            <span className="gradient-text">Anything.</span>
+            Built For Private{' '}
+            <span className="gradient-text">Synthetic Video.</span>
           </h2>
           <p className="text-[#888888] text-base mt-4 max-w-[500px] mx-auto">
-            Three powerful studios. Infinite creative possibilities. One unified platform.
+            AdultGen is being developed as a compliance-first creation layer for verified adults, starting with private intent capture and structured scene generation.
           </p>
         </div>
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
           {features.map((feature, i) => {
             const Icon = feature.icon;
             return (
