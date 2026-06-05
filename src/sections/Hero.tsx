@@ -125,9 +125,9 @@ export default function Hero() {
           className="text-[48px] md:text-[72px] font-semibold leading-[1.05] tracking-[-2px] text-[#121212] mb-6"
           style={{ opacity: 0 }}
         >
-          From endless adult search
+          Private uncensored sexting
           <br />
-          <span className="gradient-text">to private synthetic creation.</span>
+          <span className="gradient-text">for verified adults.</span>
         </h1>
 
         {/* Subtitle */}
@@ -136,9 +136,9 @@ export default function Hero() {
           className="text-base md:text-lg text-[#888888] max-w-[600px] mx-auto mb-10 leading-relaxed"
           style={{ opacity: 0 }}
         >
-          AdultGen transforms private user intent into structured, personalized
-          adult video experiences for verified adults. Built with compliance,
-          safety, consent controls, and AI transparency from day one.
+          AdultGen chat is live in private beta — 38 fictional personas, WhatsApp-style
+          replies, and MLX-backed models. Synthetic image and video generation are our
+          next milestone; we are actively seeking investors for that layer.
         </p>
 
         {/* Access actions */}
@@ -155,10 +155,10 @@ export default function Hero() {
             Request Early Access
           </button>
           <a
-            href="/investor-demo"
+            href="/chat"
             className="w-full rounded-full border border-black/10 bg-white/70 px-6 py-3 text-sm font-semibold text-[#121212] transition-all duration-300 hover:scale-[1.02] hover:bg-white sm:w-auto"
           >
-            Beta Access
+            Open private chat
           </a>
         </div>
 

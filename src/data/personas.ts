@@ -1,0 +1,46 @@
+export const CHAT_PERSONAS = [
+  { id: '16_strict_stepdad_marcus', label: 'Strict Stepdad (Marcus)' },
+  { id: '03_seductive_stepmom_elena', label: 'Seductive Stepmom (Elena)' },
+  { id: '04_teasing_stepsister_lily', label: 'Teasing Stepsister (Lily)' },
+  { id: '08_bratty_teasing_stepsister_sophia', label: 'Bratty Teasing Stepsister (Sophia)' },
+  { id: '38_possessive_older_sister_isabella', label: 'Possessive Older Sister (Isabella)' },
+  { id: '37_shy_nerdy_girl_secret_slut_emma', label: 'Shy Nerdy Girl / Secret Slut (Emma)' },
+  { id: '12_shy_but_secretly_slutty_stepsister_emma', label: 'Shy but Secretly Slutty Stepsister (Emma)' },
+  { id: '31_dominant_futanari_girlfriend_luna', label: 'Dominant Futanari Girlfriend (Luna)' },
+  { id: '14_yandere_obsessive_girlfriend_luna', label: 'Yandere Obsessive Girlfriend (Luna)' },
+  { id: '13_breeding_obsessed_daddy', label: 'Breeding-Obsessed Daddy' },
+  { id: '20_possessive_ex_girlfriend_zoe', label: 'Possessive Ex-Girlfriend (Zoe)' },
+  { id: '27_toxic_abusive_ex_boyfriend_damien', label: 'Toxic / Abusive Ex-Boyfriend (Damien)' },
+  { id: '11_dominant_female_boss_isabella', label: 'Dominant Female Boss (Isabella)' },
+  { id: '30_bratty_female_coworker_megan', label: 'Bratty Female Coworker (Megan)' },
+  { id: '32_strict_policewoman_officer_ramirez', label: 'Strict Policewoman (Officer Ramirez)' },
+  { id: '19_horny_nurse_elena', label: 'Horny Nurse (Elena)' },
+  { id: '33_horny_milf_next_door_karen', label: 'Horny MILF Next Door (Karen)' },
+  { id: '24_dominant_sugar_mommy_victoria', label: 'Dominant Sugar Mommy (Victoria)' },
+  { id: '09_strict_disciplinary_mommy_victoria', label: 'Strict & Disciplinary Mommy (Victoria)' },
+  { id: '05_nurturing_but_dominant_mommy', label: 'Nurturing but Dominant Mommy' },
+  { id: '02_dominant_daddy', label: 'Dominant Daddy' },
+  { id: '22_dominant_gym_trainer_ryan', label: 'Dominant Gym Trainer (Ryan)' },
+  { id: '36_professional_dominatrix_mistress_v', label: 'Professional Dominatrix (Mistress V)' },
+  { id: '26_succubus_lilith', label: 'Succubus (Lilith)' },
+  { id: '35_incubus_damon', label: 'Incubus (Damon)' },
+  { id: '29_vampire_mistress_selene', label: 'Vampire Mistress (Selene)' },
+  { id: '25_innocent_church_girl_grace', label: 'Innocent Church Girl (Grace)' },
+  { id: '23_submissive_french_maid_sophie', label: 'Submissive French Maid (Sophie)' },
+  { id: '06_submissive_pet_slave', label: 'Submissive Pet / Slave' },
+  { id: '21_free_use_female_roommate_chloe', label: 'Free Use Female Roommate (Chloe)' },
+  { id: '07_free_use_girlfriend_mia', label: 'Free Use Girlfriend (Mia)' },
+  { id: '10_horny_best_friend_female_ava', label: 'Horny Best Friend Female (Ava)' },
+  { id: '17_bimbo_girlfriend_tiffany', label: 'Bimbo Girlfriend (Tiffany)' },
+  { id: '18_goth_alternative_girlfriend_raven', label: 'Goth / Alternative Girlfriend (Raven)' },
+  { id: '15_submissive_femboy_boyfriend_alex', label: 'Submissive Femboy Boyfriend (Alex)' },
+  { id: '34_obsessive_yandere_boy_kai', label: 'Obsessive Yandere Boy (Kai)' },
+  { id: '28_high_class_escort_isabella', label: 'High-Class Escort (Isabella)' },
+  { id: '01_loving_girlfriend_emma', label: 'Loving Girlfriend (Emma)' },
+] as const;
+
+export type ChatPersonaId = (typeof CHAT_PERSONAS)[number]['id'];
+
+export function getChatPersonaLabel(id: string) {
+  return CHAT_PERSONAS.find((persona) => persona.id === id)?.label ?? 'AdultGen Companion';
+}

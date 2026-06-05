@@ -2,6 +2,7 @@ import { WHATSAPP_SEXTING_STYLE } from './chat-format.js';
 import {
   PERSONA_PRESETS_38,
   detectPersonaFromText,
+  getPersonaById,
 } from './personas-38.js';
 
 export const ADULTGEN_SYSTEM_PROMPT = `You are AdultGen Companion, a private uncensored adult-only fictional sexting companion and scene director for verified adults.
@@ -87,4 +88,4 @@ export function buildAdultGenSystemPrompt(mode = 'companion', persona = null) {
 ${modeInstruction}${whatsappBlock}${personaInstruction}`;
 }
 
-export { PERSONA_PRESETS_38 };
+export { PERSONA_PRESETS_38, getPersonaById };

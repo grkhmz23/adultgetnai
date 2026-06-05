@@ -6,6 +6,7 @@ import {
   detectAdultGenPersona,
   detectAdultGenMode,
   getPersonaRefusal,
+  getPersonaById,
 } from './adultgen-system-prompt.js';
 
 const allowedRoles = new Set(['user', 'assistant']);
@@ -96,7 +97,8 @@ export default async function handler(req, res) {
       return;
     }
 
-    const persona = detectPersonaFromMessages(chatMessages);
+    const requestedPersona = getPersonaById(body.persona_id);
+    const persona = requestedPersona || detectPersonaFromMessages(chatMessages);
     const runtimeResponse = getRuntimeResponse(lastUserMessage, {
       messages: chatMessages,
     });

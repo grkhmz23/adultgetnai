@@ -8,7 +8,7 @@ const prohibitedUse = [
   'celebrities, public figures, influencers, coworkers, acquaintances, former partners, or identifiable individuals;',
   'non-consensual scenarios;',
   'coercion, blackmail, intoxication, unconsciousness, trafficking, exploitation, or abuse;',
-  'incest, family-role sexual content, or step-family sexual content;',
+  'sexual content involving minors, real biological relatives, or non-fictional family members;',
   'bestiality;',
   'protected-class degradation, hateful sexualization, or slurs;',
   'illegal sexual content;',

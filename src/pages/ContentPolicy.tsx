@@ -8,7 +8,7 @@ const strictlyProhibited = [
   'celebrities, public figures, influencers, coworkers, acquaintances, former partners, or identifiable individuals;',
   'non-consensual sexual scenarios;',
   'coercion, blackmail, intoxication, unconsciousness, drugging, trafficking, exploitation, or abuse;',
-  'incest, family-role sexual content, or step-family sexual content;',
+  'sexual content involving minors, real biological relatives, or non-fictional family members;',
   'bestiality;',
   'protected-class degradation, hateful sexualization, or slurs;',
   'illegal sexual content;',
@@ -92,6 +92,7 @@ export default function ContentPolicy() {
           items={[
             'AdultGen is designed for fictional adult content only.',
             'All generated characters, chat scenarios, roleplay interactions, and future synthetic media outputs must involve fictional adults only.',
+            'Private beta chat may include consensual fictional adult roleplay archetypes (for example step-family or ex-partner fantasies) where every character is clearly 18+ and not a real person.',
             'AdultGen does not support requests involving minors, real people, celebrities, public figures, private persons, acquaintances, coworkers, former partners, or any identifiable individual.',
           ]}
         />

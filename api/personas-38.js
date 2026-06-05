@@ -42,6 +42,12 @@ export const PERSONA_PRESETS_38 = [
 
 export function patternsToRegExp(pattern) { return new RegExp(pattern, "i"); }
 
+export function getPersonaById(id = "") {
+  const key = String(id).trim();
+  if (!key) return null;
+  return PERSONA_PRESETS_38.find((preset) => preset.id === key) || null;
+}
+
 export function detectPersonaFromText(text = "") {
   const input = String(text);
   for (const preset of PERSONA_PRESETS_38) {

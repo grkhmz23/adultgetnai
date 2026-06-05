@@ -54,7 +54,7 @@ export default function Careers() {
 
       <Paragraphs
         items={[
-          'AdultGen AI is building a video-first adult AI platform for verified adults. This is a technically difficult and highly regulated category. We are looking for people who can build with precision, discretion, and product discipline.',
+          'AdultGen AI is building a chat-first adult AI platform for verified adults, with synthetic image and video on the roadmap. This is a technically difficult and highly regulated category. We are looking for people who can build with precision, discretion, and product discipline.',
           'We are especially interested in people with experience in:',
         ]}
       />

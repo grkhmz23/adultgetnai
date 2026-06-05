@@ -205,12 +205,12 @@ export default function InfiniteMediaWall() {
                 textShadow: '0 2px 20px rgba(255,255,255,0.8)',
               }}
             >
-              Private Intent
+              From private chat
               <br />
-              <span className="gradient-text">To Synthetic Video</span>
+              <span className="gradient-text">to synthetic media</span>
             </h2>
-            <p className="text-sm text-[#888888] mt-3 max-w-[280px] mx-auto">
-              A consent-first roadmap from verified identity to structured scene direction and future private adult video generation.
+            <p className="text-sm text-[#888888] mt-3 max-w-[300px] mx-auto">
+              Intent captured in live sexting today — structured scenes, still images, and short-form video as we scale with investors.
             </p>
           </div>
         </div>

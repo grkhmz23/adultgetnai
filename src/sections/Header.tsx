@@ -17,6 +17,7 @@ export default function Header() {
 
   const navLinks = [
     { label: 'Overview', href: '/' },
+    { label: 'Product', href: '/#product' },
     { label: 'Compliance', href: '/content-policy' },
     { label: 'About', href: '/about' },
   ];
@@ -55,10 +56,10 @@ export default function Header() {
             Request Early Access
           </button>
           <a
-            href="/investor-demo"
+            href="/chat"
             className="border border-black/10 bg-white/60 text-[#121212] text-sm font-medium px-5 py-2 rounded-full transition-all duration-300 hover:scale-[1.02] hover:bg-white"
           >
-            Beta Access
+            Private chat
           </a>
         </div>
 
@@ -96,10 +97,10 @@ export default function Header() {
               Request Early Access
             </button>
             <a
-              href="/investor-demo"
+              href="/chat"
               className="border border-black/10 bg-white text-[#121212] text-sm font-medium px-5 py-2.5 rounded-full w-full text-center"
             >
-              Beta Access
+              Private chat
             </a>
           </nav>
         </div>

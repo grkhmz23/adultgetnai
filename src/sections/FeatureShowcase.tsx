@@ -1,53 +1,57 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Clapperboard, MessageCircle, ShieldCheck, UserRound, ArrowUpRight } from 'lucide-react';
+import { Clapperboard, Image, MessageCircle, ShieldCheck, ArrowUpRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const features = [
   {
     icon: MessageCircle,
-    title: 'Private Companion',
+    title: 'Sexting Chat',
     description:
-      'A private conversational layer for capturing user intent, tone, preference, and fantasy direction in an adult-only verified environment.',
+      'Live private beta: 38 fictional adult personas, uncensored WhatsApp-style bubbles, and fine-tuned MLX models for verified adults.',
     image: '/images/image-studio.jpg',
-    tag: 'Private Demo',
+    tag: 'Live now',
     color: '#8338ec',
-  },
-  {
-    icon: UserRound,
-    title: 'Verified Digital Twin',
-    description:
-      'Roadmap feature for verified users to create a consent-bound self avatar, then use that digital twin in future private synthetic adult video workflows.',
-    image: '/images/character-creator.jpg',
-    tag: 'HeyGen-Style Roadmap',
-    color: '#3a86ff',
+    href: '/chat',
   },
   {
     icon: ShieldCheck,
-    title: 'Scene Director',
+    title: 'Safety & Compliance',
     description:
-      'Transforms natural language into structured fictional adult scene concepts, including setting, archetypes, mood, camera direction, and safety status.',
+      'Fictional adults only, hard blocks on minors and real-person misuse, age gate, audit-friendly prompts, and transparent AI labeling on future media.',
     image: '/images/gallery-2.jpg',
-    tag: 'Prompt Engine',
+    tag: 'Day one',
     color: '#ff006e',
+    href: '/content-policy',
+  },
+  {
+    icon: Image,
+    title: 'Synthetic Images',
+    description:
+      'Investor-backed still-image pipeline for fictional adults — consent controls, prompt safety, and no real-person likeness. In active development.',
+    image: '/images/character-creator.jpg',
+    tag: 'Seeking investment',
+    color: '#3a86ff',
+    href: '/contact',
   },
   {
     icon: Clapperboard,
-    title: 'Video Pipeline',
+    title: 'Synthetic Video',
     description:
-      'Planned short-form synthetic adult video layer built around fictional adults, self-avatar consent controls, AI labeling, and prompt/output safety.',
+      'Short-form private adult video from structured scene intent. Built after chat and image prove retention, safety, and unit economics.',
     image: '/images/video-studio.jpg',
-    tag: 'Planned Generation',
+    tag: 'Roadmap',
     color: '#121212',
+    href: '/contact',
   },
 ];
 
 export default function FeatureShowcase() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const cardsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -108,11 +112,11 @@ export default function FeatureShowcase() {
             className="text-[40px] md:text-[64px] font-semibold tracking-[-2px] text-[#121212] leading-tight"
             style={{ opacity: 0 }}
           >
-            Built For Private{' '}
-            <span className="gradient-text">Synthetic Video.</span>
+            Chat-first.{' '}
+            <span className="gradient-text">Media next.</span>
           </h2>
-          <p className="text-[#888888] text-base mt-4 max-w-[500px] mx-auto">
-            AdultGen is being developed as a compliance-first creation layer for verified adults, starting with private intent capture and structured scene generation.
+          <p className="text-[#888888] text-base mt-4 max-w-[520px] mx-auto">
+            Uncensored adult chat ships today. Synthetic image and video layers are the next fundraise — built with the same compliance and fictional-adult-only standard.
           </p>
         </div>
 
@@ -121,10 +125,11 @@ export default function FeatureShowcase() {
           {features.map((feature, i) => {
             const Icon = feature.icon;
             return (
-              <div
+              <a
                 key={feature.title}
+                href={feature.href}
                 ref={(el) => { cardsRef.current[i] = el; }}
-                className="glass-card overflow-hidden group cursor-pointer transition-all duration-500 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] hover:scale-[1.01]"
+                className="glass-card overflow-hidden group block transition-all duration-500 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] hover:scale-[1.01]"
                 style={{ opacity: 0 }}
               >
                 {/* Image */}
@@ -167,7 +172,7 @@ export default function FeatureShowcase() {
                     {feature.description}
                   </p>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>

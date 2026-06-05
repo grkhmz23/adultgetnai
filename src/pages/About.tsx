@@ -5,16 +5,16 @@ export default function About() {
   return (
     <PageShell
       title="About AdultGen AI"
-      description="AdultGen AI is building video-first synthetic media for verified adults with privacy, compliance, and safety controls."
+      description="AdultGen AI ships uncensored adult chat for verified adults and is building synthetic image and video with privacy, compliance, and safety controls."
       eyebrow="Company"
     >
       <Paragraphs
         items={[
-          'AdultGen AI is building a video-first synthetic media platform for verified adults.',
-          'Adult entertainment has always been driven by specificity. Users search across tube sites, creator platforms, and niche communities trying to find content that matches a private idea, mood, or fantasy. AdultGen is built around a different model: instead of searching endlessly, verified adults will be able to create personalized synthetic video experiences through a safe, private, and compliance-first interface.',
-          'AdultGen is not an unmoderated generator. The product is being designed around age verification, fictional-adult-only content, real-person misuse prevention, AI labeling, prompt and output safety checks, auditability, and privacy-preserving user controls.',
-          'Our first product direction combines three layers: a private conversational companion for intent capture, a scene-director engine that turns natural language into structured video prompts, and a video-generation pipeline designed for short-form synthetic adult media.',
-          'The long-term vision is to build the trusted creation layer for adult entertainment: private by default, synthetic by design, and serious about safety from day one.',
+          'AdultGen AI is building a chat-first, compliance-first platform for verified adults.',
+          'Private beta chat is live today: fictional personas, uncensored sexting, WhatsApp-style messaging, and MLX-backed models fine-tuned for adult roleplay. Users no longer need to hunt across tube sites for a tone that matches their fantasy — they can talk to a character that stays in scene.',
+          'Synthetic image and short-form adult video are the next product layers. We are actively seeking investors to fund labeled, fictional-adult-only generation with prompt safety, consent controls, and no real-person likeness.',
+          'AdultGen is not an unmoderated generator. The product is designed around age verification, fictional-adult-only content, real-person misuse prevention, AI labeling on future media, prompt and output safety, auditability, and privacy-preserving controls.',
+          'The long-term vision is the trusted creation layer for adult entertainment: private by default, synthetic by design, chat live now, and serious about safety from day one.',
         ]}
       />
 

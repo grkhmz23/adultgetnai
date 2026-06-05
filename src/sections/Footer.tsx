@@ -5,8 +5,8 @@ const footerLinks = [
     title: 'Product',
     links: [
       { label: 'Overview', href: '/' },
-      { label: 'Private Demo', href: '/contact' },
-      { label: 'Investor Deck', href: '/contact' },
+      { label: 'Private chat', href: '/chat' },
+      { label: 'Investors', href: '/contact' },
       { label: 'Compliance', href: '/content-policy' },
     ],
   },
@@ -41,8 +41,8 @@ export default function Footer() {
             <a href="/" className="inline-flex mb-4" aria-label="AdultGen AI home">
               <BrandLogo compact />
             </a>
-            <p className="text-sm text-[#888888] max-w-[280px] leading-relaxed mb-6">
-              Video-first synthetic media for verified adults. Private by design, synthetic by default, and built with compliance controls from day one.
+            <p className="text-sm text-[#888888] max-w-[300px] leading-relaxed mb-6">
+              Uncensored adult chat for verified adults — live in private beta. Synthetic image and video are in development; we are seeking investors for the media layer.
             </p>
           </div>
 
@@ -74,7 +74,7 @@ export default function Footer() {
             &copy; 2026 AdultGen AI. All rights reserved.
           </p>
           <p className="text-xs text-[#aaaaaa]">
-            AdultGen is in private development. Public generation is not available on this website.
+            Chat is in private beta. Public image and video generation are not available on this website.
           </p>
         </div>
       </div>

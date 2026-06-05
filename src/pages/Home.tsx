@@ -3,6 +3,7 @@ import MeshGradientBackground from '../components/effects/MeshGradientBackground
 import Header from '../sections/Header';
 import Hero from '../sections/Hero';
 import FeatureShowcase from '../sections/FeatureShowcase';
+import ProductStatus from '../sections/ProductStatus';
 import Footer from '../sections/Footer';
 
 const InfiniteMediaWall = lazy(() => import('../sections/InfiniteMediaWall'));
@@ -51,6 +52,7 @@ export default function Home() {
       {/* Main Content */}
       <main className="relative">
         <Hero />
+        <ProductStatus />
         <DeferredInfiniteMediaWall />
         <FeatureShowcase />
       </main>
