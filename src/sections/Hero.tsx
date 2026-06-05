@@ -136,9 +136,10 @@ export default function Hero() {
           className="text-base md:text-lg text-[#888888] max-w-[600px] mx-auto mb-10 leading-relaxed"
           style={{ opacity: 0 }}
         >
-          AdultGen chat is live in private beta — 38 fictional personas, WhatsApp-style
-          replies, and MLX-backed models. Synthetic image and video generation are our
-          next milestone; we are actively seeking investors for that layer.
+          AdultGen chat is live in private beta — 38 fictional personas, natural
+          private messaging, and in-house companion models built for adult roleplay.
+          Synthetic image and video generation are our next milestone; we are actively
+          seeking investors for that layer.
         </p>
 
         {/* Access actions */}

@@ -168,8 +168,8 @@ export default function InvestorDemo() {
       if (!response.ok) {
         const hint =
           response.status === 502 || response.status === 500
-            ? 'Chat backend may be offline. Ensure MLX is running and the tunnel URL is set on Vercel.'
-            : `Backend returned ${response.status}`;
+            ? 'Chat is temporarily unavailable. Please try again in a moment.'
+            : `Something went wrong (${response.status}). Please try again.`;
         throw new Error(hint);
       }
 
@@ -243,7 +243,7 @@ export default function InvestorDemo() {
             <ul className="mt-6 space-y-3 text-sm text-[#666666]">
               <li className="flex items-start gap-2">
                 <MessageCircle size={16} className="mt-0.5 shrink-0 text-[#8338ec]" />
-                Live WhatsApp-style sexting with MLX + fine-tuned Qwen
+                Private uncensored sexting with 38 fictional personas
               </li>
               <li className="flex items-start gap-2">
                 <Sparkles size={16} className="mt-0.5 shrink-0 text-[#3a86ff]" />

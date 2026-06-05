@@ -6,7 +6,7 @@ const milestones = [
     status: 'Live in private beta',
     title: 'Uncensored sexting chat',
     description:
-      '38 fictional adult personas, WhatsApp-style bubbles, and MLX-backed replies for verified adults with private credentials.',
+      '38 fictional adult personas, natural message flow, and proprietary AdultGen models for verified adults with private credentials.',
     accent: '#8338ec',
   },
   {

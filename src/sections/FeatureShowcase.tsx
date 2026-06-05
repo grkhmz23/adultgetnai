@@ -10,7 +10,7 @@ const features = [
     icon: MessageCircle,
     title: 'Sexting Chat',
     description:
-      'Live private beta: 38 fictional adult personas, uncensored WhatsApp-style bubbles, and fine-tuned MLX models for verified adults.',
+      'Live private beta: 38 fictional adult personas, immersive private chat, and AdultGen companion models for verified adults.',
     image: '/images/image-studio.jpg',
     tag: 'Live now',
     color: '#8338ec',

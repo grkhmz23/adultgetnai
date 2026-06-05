@@ -3,7 +3,7 @@ import PageShell from '../components/PageShell';
 
 const focusAreas = [
   'AI video generation',
-  'LLM fine-tuning and evaluation',
+  'Proprietary model training and evaluation',
   'Trust and safety systems',
   'Prompt and output moderation',
   'Privacy-first product architecture',
@@ -17,7 +17,7 @@ const roles = [
   {
     title: 'AI / ML Engineer',
     description:
-      'Work on model adaptation, LoRA fine-tuning, evaluation, prompt-to-scene generation, safety testing, and future video-generation workflows.',
+      'Work on in-house model development, evaluation, prompt-to-scene generation, safety testing, and future video-generation workflows.',
   },
   {
     title: 'Full-Stack Product Engineer',
