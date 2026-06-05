@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router'
+import AgeGate from './components/AgeGate'
 import Home from './pages/Home'
 
 const InvestorDemo = lazy(() => import('./pages/InvestorDemo'))
@@ -12,17 +13,19 @@ const ContentPolicy = lazy(() => import('./pages/ContentPolicy'))
 
 export default function App() {
   return (
-    <Suspense fallback={null}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/investor-demo" element={<InvestorDemo />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/content-policy" element={<ContentPolicy />} />
-      </Routes>
-    </Suspense>
+    <AgeGate>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/investor-demo" element={<InvestorDemo />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/content-policy" element={<ContentPolicy />} />
+        </Routes>
+      </Suspense>
+    </AgeGate>
   )
 }
