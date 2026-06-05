@@ -1,47 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import gsap from 'gsap';
 import { X } from 'lucide-react';
 import { requestEarlyAccess } from '../lib/requestEarlyAccess';
 import { adultgenConfig } from '../lib/runtimeConfig';
+import { useInView } from '../hooks/useInView';
 
 type FormStatus = 'idle' | 'submitting' | 'sent' | 'error';
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
+  const { ref: sectionRef, inView } = useInView<HTMLDivElement>();
   const firstFieldRef = useRef<HTMLInputElement>(null);
   const [earlyAccessOpen, setEarlyAccessOpen] = useState(false);
   const [status, setStatus] = useState<FormStatus>('idle');
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.3 });
-
-      tl.fromTo(
-        headingRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
-      )
-        .fromTo(
-          subtitleRef.current,
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-          '-=0.5'
-        )
-        .fromTo(
-          ctaRef.current,
-          { y: 30, opacity: 0, scale: 0.95 },
-          { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'power3.out' },
-          '-=0.4'
-        )
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   useEffect(() => {
     function openEarlyAccess() {
@@ -112,29 +83,25 @@ export default function Hero() {
     }
   }
 
+  const visibleClass = inView ? 'is-visible' : '';
+
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 pb-20"
+      className="relative flex min-h-screen flex-col items-center justify-center px-6 pb-20"
       style={{ zIndex: 1 }}
     >
-      <div className="max-w-[800px] mx-auto text-center">
-        {/* Heading */}
+      <div className="mx-auto max-w-[800px] text-center">
         <h1
-          ref={headingRef}
-          className="text-[48px] md:text-[72px] font-semibold leading-[1.05] tracking-[-2px] text-[#121212] mb-6"
-          style={{ opacity: 0 }}
+          className={`reveal-up mb-6 text-[48px] font-semibold leading-[1.05] tracking-[-2px] text-[#121212] md:text-[72px] ${visibleClass}`}
         >
           Private uncensored sexting
           <br />
           <span className="gradient-text">for verified adults.</span>
         </h1>
 
-        {/* Subtitle */}
         <p
-          ref={subtitleRef}
-          className="text-base md:text-lg text-[#888888] max-w-[600px] mx-auto mb-10 leading-relaxed"
-          style={{ opacity: 0 }}
+          className={`reveal-up reveal-up-delay-1 mx-auto mb-10 max-w-[600px] text-base leading-relaxed text-[#888888] md:text-lg ${visibleClass}`}
         >
           AdultGen chat is live in private beta — 38 fictional personas, natural
           private messaging, and in-house companion models built for adult roleplay.
@@ -142,11 +109,8 @@ export default function Hero() {
           seeking investors for that layer.
         </p>
 
-        {/* Access actions */}
         <div
-          ref={ctaRef}
-          className="mx-auto flex max-w-[520px] flex-col items-center justify-center gap-3 sm:flex-row"
-          style={{ opacity: 0 }}
+          className={`reveal-up reveal-up-delay-2 mx-auto flex max-w-[520px] flex-col items-center justify-center gap-3 sm:flex-row ${visibleClass}`}
         >
           <button
             type="button"
@@ -162,13 +126,11 @@ export default function Hero() {
             Open private chat
           </a>
         </div>
-
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
         <span className="text-[10px] uppercase tracking-[3px] text-[#aaaaaa]">Scroll</span>
-        <div className="w-[1px] h-8 bg-gradient-to-b from-[#aaaaaa] to-transparent" />
+        <div className="h-8 w-[1px] bg-gradient-to-b from-[#aaaaaa] to-transparent" />
       </div>
 
       {earlyAccessOpen && (

@@ -1,8 +1,8 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router'
 import AgeGate from './components/AgeGate'
-import Home from './pages/Home'
 
+const Home = lazy(() => import('./pages/Home'))
 const InvestorDemo = lazy(() => import('./pages/InvestorDemo'))
 const About = lazy(() => import('./pages/About'))
 const Careers = lazy(() => import('./pages/Careers'))
