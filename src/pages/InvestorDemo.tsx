@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import { Lock, MessageCircle, Search, Sparkles, Video } from 'lucide-react';
+import { Lock, MessageCircle, Sparkles, Video } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
 import { bubblesFromAssistantMessage } from '../lib/chatBubbles';
-import { CHAT_PERSONAS, getChatPersonaLabel, type ChatPersonaId } from '../data/personas';
+import { getChatPersonaLabel } from '../data/personas';
 
 type ChatMessage = {
   role: 'user' | 'assistant';
@@ -41,19 +41,11 @@ export default function InvestorDemo() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [personaId, setPersonaId] = useState<ChatPersonaId | ''>('');
-  const [personaQuery, setPersonaQuery] = useState('');
   const [prompt, setPrompt] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [contactName, setContactName] = useState('AdultGen Companion');
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  const filteredPersonas = useMemo(() => {
-    const query = personaQuery.trim().toLowerCase();
-    if (!query) return CHAT_PERSONAS;
-    return CHAT_PERSONAS.filter((persona) => persona.label.toLowerCase().includes(query));
-  }, [personaQuery]);
 
   useEffect(() => {
     let mounted = true;
@@ -83,11 +75,6 @@ export default function InvestorDemo() {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [messages, isLoading]);
 
-  useEffect(() => {
-    if (!personaId) return;
-    setContactName(stripPersonaSuffix(getChatPersonaLabel(personaId)));
-  }, [personaId]);
-
   async function submitLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsLoading(true);
@@ -113,22 +100,6 @@ export default function InvestorDemo() {
     } finally {
       setIsLoading(false);
     }
-  }
-
-  function handlePersonaChange(nextId: ChatPersonaId | '') {
-    if (nextId === personaId) return;
-
-    if (messages.length > 0) {
-      const confirmed = window.confirm(
-        'Switching persona clears this conversation. Continue?'
-      );
-      if (!confirmed) return;
-    }
-
-    setPersonaId(nextId);
-    setMessages([]);
-    setError('');
-    setContactName(nextId ? stripPersonaSuffix(getChatPersonaLabel(nextId)) : 'AdultGen Companion');
   }
 
   async function submitPrompt(event: FormEvent<HTMLFormElement>) {
@@ -159,7 +130,6 @@ export default function InvestorDemo() {
             role: message.role,
             content: message.content,
           })),
-          persona_id: personaId || undefined,
           max_tokens: 1024,
           temperature: 0.85,
         }),
@@ -327,7 +297,6 @@ export default function InvestorDemo() {
                 });
                 setAuthenticated(false);
                 setMessages([]);
-                setPersonaId('');
                 setContactName('AdultGen Companion');
               }}
               className="rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-medium text-[#121212]"
@@ -337,57 +306,7 @@ export default function InvestorDemo() {
           </div>
         </header>
 
-        <div className="flex min-h-0 flex-1 flex-col gap-4 lg:flex-row">
-          <aside className="glass-card flex w-full shrink-0 flex-col overflow-hidden lg:w-[300px]">
-            <div className="border-b border-black/5 px-4 py-3">
-              <p className="text-sm font-semibold text-[#121212]">Personas</p>
-              <p className="text-xs text-[#888888]">38 fictional adults · 18+ only</p>
-            </div>
-            <div className="border-b border-black/5 px-3 py-2">
-              <div className="relative">
-                <Search
-                  size={15}
-                  className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#aaaaaa]"
-                />
-                <input
-                  type="search"
-                  value={personaQuery}
-                  onChange={(event) => setPersonaQuery(event.target.value)}
-                  placeholder="Search personas…"
-                  className="w-full rounded-xl border border-black/10 bg-white py-2 pl-9 pr-3 text-sm text-[#121212] outline-none focus:border-[#8338ec]"
-                />
-              </div>
-            </div>
-            <div className="max-h-[220px] overflow-y-auto border-b border-black/5 lg:max-h-none lg:flex-1">
-              <button
-                type="button"
-                onClick={() => handlePersonaChange('')}
-                className={`w-full px-4 py-3 text-left text-sm transition-colors ${
-                  !personaId
-                    ? 'bg-[#8338ec]/10 font-semibold text-[#8338ec]'
-                    : 'text-[#666666] hover:bg-black/[0.03]'
-                }`}
-              >
-                Auto-detect from chat
-              </button>
-              {filteredPersonas.map((persona) => (
-                <button
-                  key={persona.id}
-                  type="button"
-                  onClick={() => handlePersonaChange(persona.id)}
-                  className={`w-full px-4 py-3 text-left text-sm transition-colors ${
-                    personaId === persona.id
-                      ? 'bg-[#8338ec]/10 font-semibold text-[#8338ec]'
-                      : 'text-[#444444] hover:bg-black/[0.03]'
-                  }`}
-                >
-                  {persona.label}
-                </button>
-              ))}
-            </div>
-          </aside>
-
-          <section className="flex min-h-[min(72vh,720px)] min-w-0 flex-1 flex-col overflow-hidden rounded-2xl border border-black/5 bg-[#e5ddd5] shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
+        <section className="flex min-h-[min(72vh,720px)] flex-1 flex-col overflow-hidden rounded-2xl border border-black/5 bg-[#e5ddd5] shadow-[0_12px_40px_rgba(0,0,0,0.06)] max-w-[720px] mx-auto w-full">
             <div className="flex items-center gap-3 border-b border-black/5 bg-[#f0f0f0] px-4 py-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#8338ec] to-[#3a86ff] text-sm font-semibold text-white">
                 {contactName.charAt(0)}
@@ -395,7 +314,7 @@ export default function InvestorDemo() {
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold text-[#121212]">{contactName}</p>
                 <p className="text-xs text-[#667781]">
-                  {personaId ? 'Selected persona' : 'Persona auto-detect'} · fictional adult
+                  Auto-detect persona · fictional adult
                 </p>
               </div>
             </div>
@@ -405,8 +324,7 @@ export default function InvestorDemo() {
                 <div className="mx-auto max-w-[420px] rounded-2xl bg-white/90 px-5 py-6 text-center shadow-sm">
                   <p className="text-sm font-medium text-[#121212]">Start a private conversation</p>
                   <p className="mt-2 text-xs leading-relaxed text-[#888888]">
-                    Choose a persona on the left or type naturally — the model will match your tone.
-                    All characters are fictional adults 18+.
+                    Type naturally — the AI auto-detects who you want. All characters are fictional adults 18+.
                   </p>
                   <div className="mt-4 flex flex-wrap justify-center gap-2">
                     {STARTER_PROMPTS.map((starter) => (
@@ -499,7 +417,6 @@ export default function InvestorDemo() {
               </div>
             </form>
           </section>
-        </div>
       </div>
     </main>
   );
