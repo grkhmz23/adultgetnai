@@ -1,0 +1,26 @@
+{
+  "name": "AdultGen AI — Uncensored AI Chat",
+  "short_name": "AdultGen AI",
+  "description": "Private uncensored AI chat for verified adults. AI sexting, NSFW AI chatbot, adult roleplay, AI porn generation.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#121212",
+  "background_color": "#0a0a0c",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["entertainment", "social", "lifestyle"],
+  "icons": [
+    {
+      "src": "/favicon/adultgen-favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/adultgen-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

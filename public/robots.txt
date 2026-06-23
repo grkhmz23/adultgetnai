@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Crawl everything — this is an adult platform, no secrets
+# Sitemap for search engines
+Sitemap: https://adultgen.fun/sitemap.xml
+
+# Block API endpoints from indexing
+Disallow: /api/
+
+# Prevent crawling of investor-only pages (gated behind auth anyway)
+Disallow: /chat
+Disallow: /investor-demo
+
+Host: adultgen.fun

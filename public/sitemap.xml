@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage — highest priority -->
+  <url>
+    <loc>https://adultgen.fun</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adultgen.fun"/>
+  </url>
+
+  <!-- Core pages -->
+  <url>
+    <loc>https://adultgen.fun/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adultgen.fun/about"/>
+  </url>
+
+  <url>
+    <loc>https://adultgen.fun/careers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adultgen.fun/careers"/>
+  </url>
+
+  <url>
+    <loc>https://adultgen.fun/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adultgen.fun/contact"/>
+  </url>
+
+  <!-- Legal / trust pages — important for adult platforms -->
+  <url>
+    <loc>https://adultgen.fun/content-policy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adultgen.fun/content-policy"/>
+  </url>
+
+  <url>
+    <loc>https://adultgen.fun/terms</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adultgen.fun/terms"/>
+  </url>
+
+  <url>
+    <loc>https://adultgen.fun/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adultgen.fun/privacy"/>
+  </url>
+
+</urlset>

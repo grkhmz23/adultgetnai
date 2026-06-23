@@ -4,6 +4,7 @@ import { Lock, MessageCircle, Sparkles, Video } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
 import { bubblesFromAssistantMessage } from '../lib/chatBubbles';
 import { getChatPersonaLabel } from '../data/personas';
+import { usePageMeta } from '../hooks/use-page-meta';
 
 type ChatMessage = {
   role: 'user' | 'assistant';
@@ -36,6 +37,13 @@ function stripPersonaSuffix(name: string) {
 }
 
 export default function InvestorDemo() {
+  usePageMeta({
+    title: 'Private Chat — AdultGen AI',
+    description:
+      'Private uncensored AI chat with 38+ fictional personas. AI sexting, NSFW roleplay, adult AI companion. No filters, no refusals. Verified adults only.',
+    canonical: 'https://adultgen.fun/chat',
+  });
+
   const [authenticated, setAuthenticated] = useState(false);
   const [checkingSession, setCheckingSession] = useState(true);
   const [login, setLogin] = useState('');
