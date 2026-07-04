@@ -121,11 +121,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
-        <span className="text-[10px] uppercase tracking-[3px] text-[#aaaaaa]">Scroll</span>
-        <div className="h-8 w-[1px] bg-gradient-to-b from-[#aaaaaa] to-transparent" />
-      </div>
-
       {earlyAccessOpen && (
         <div
           className="fixed inset-0 z-[80] flex items-center justify-center bg-black/75 px-4 py-6 backdrop-blur-md"

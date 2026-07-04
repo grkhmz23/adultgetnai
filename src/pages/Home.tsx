@@ -2,7 +2,6 @@ import Header from '../sections/Header';
 import Hero from '../sections/Hero';
 import FeatureShowcase from '../sections/FeatureShowcase';
 import ProductStatus from '../sections/ProductStatus';
-import RoadmapSection from '../sections/RoadmapSection';
 import Footer from '../sections/Footer';
 import LazyMeshGradient from '../components/effects/LazyMeshGradient';
 import { usePageMeta } from '../hooks/use-page-meta';
@@ -22,7 +21,6 @@ export default function Home() {
       <main className="relative">
         <Hero />
         <ProductStatus />
-        <RoadmapSection />
         <FeatureShowcase />
       </main>
 
