@@ -5,7 +5,7 @@ const features = [
     title: 'Sexting Chat',
     description:
       'Live private beta: immersive sex chat, erotic roleplay, and an AdultGen companion model built exclusively for verified adults.',
-    image: '/images/image-studio.jpg',
+    image: '/images/sexting-chat.jpg',
     tag: 'Live now',
     color: '#8338ec',
     href: '/contact',
@@ -14,7 +14,7 @@ const features = [
     title: 'Safety & Compliance',
     description:
       'Fictional adults only, hard blocks on minors and real-person misuse, age gate, audit-friendly prompts, and transparent AI labeling on future media.',
-    image: '/images/gallery-2.jpg',
+    image: '/images/safety-compliance.jpg',
     tag: 'Day one',
     color: '#ff006e',
     href: '/content-policy',
@@ -23,7 +23,7 @@ const features = [
     title: 'Synthetic Images',
     description:
       'Purpose-built still-image pipeline for fictional adults — consent controls, prompt safety, and no real-person likeness. In active development.',
-    image: '/images/character-creator.jpg',
+    image: '/images/in-development.jpg',
     tag: 'In development',
     color: '#3a86ff',
     href: '/contact',
@@ -32,7 +32,7 @@ const features = [
     title: 'Synthetic Video',
     description:
       'Short-form private adult video from structured scene intent. Built after chat and image prove retention, safety, and unit economics.',
-    image: '/images/video-studio.jpg',
+    image: '/images/roadmap.jpg',
     tag: 'Roadmap',
     color: '#8338ec',
     href: '/contact',
