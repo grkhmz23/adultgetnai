@@ -26,7 +26,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-white/85 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.06)]'
+          ? 'bg-black/85 backdrop-blur-xl shadow-[0_1px_0_rgba(255,255,255,0.08)]'
           : 'bg-transparent'
       }`}
       style={{ height: 60 }}
@@ -51,21 +51,15 @@ export default function Header() {
           <button
             type="button"
             onClick={requestEarlyAccess}
-            className="bg-[#121212] text-white text-sm font-medium px-5 py-2 rounded-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+            className="rounded-full bg-white px-5 py-2 text-sm font-medium text-[#111111] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
           >
             Request Early Access
           </button>
-          <a
-            href="/chat"
-            className="border border-black/10 bg-white/60 text-[#121212] text-sm font-medium px-5 py-2 rounded-full transition-all duration-300 hover:scale-[1.02] hover:bg-white"
-          >
-            Private chat
-          </a>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden p-2 text-[#121212]"
+          className="p-2 text-white md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
@@ -74,13 +68,13 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-xl border-t border-black/5 px-6 py-6">
+        <div className="border-t border-white/10 bg-black/95 px-6 py-6 backdrop-blur-xl md:hidden">
           <nav className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-[#888888] hover:text-[#121212] transition-colors text-base font-medium"
+                className="text-base font-medium text-[#999999] transition-colors hover:text-white"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
@@ -92,16 +86,10 @@ export default function Header() {
                 setMobileOpen(false);
                 requestEarlyAccess();
               }}
-              className="bg-[#121212] text-white text-sm font-medium px-5 py-2.5 rounded-full w-full mt-2"
+              className="mt-2 w-full rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#111111]"
             >
               Request Early Access
             </button>
-            <a
-              href="/chat"
-              className="border border-black/10 bg-white text-[#121212] text-sm font-medium px-5 py-2.5 rounded-full w-full text-center"
-            >
-              Private chat
-            </a>
           </nav>
         </div>
       )}

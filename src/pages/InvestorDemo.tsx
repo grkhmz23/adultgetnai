@@ -27,8 +27,8 @@ type CompletionResponse = {
 
 const STARTER_PROMPTS = [
   'Hey… I missed you.',
-  'Be Marcus, my strict stepdad.',
-  'Roleplay as my teasing stepsister.',
+  'Be a confident fictional partner.',
+  'Roleplay as my teasing fictional companion.',
   'I need you to take control tonight.',
 ];
 
@@ -38,10 +38,10 @@ function stripPersonaSuffix(name: string) {
 
 export default function InvestorDemo() {
   usePageMeta({
-    title: 'Private Chat — AdultGen AI',
+    title: 'Investor Demo | AdultGen AI',
     description:
-      'Private uncensored AI chat with 38+ fictional personas. AI sexting, NSFW roleplay, adult AI companion. No filters, no refusals. Verified adults only.',
-    canonical: 'https://adultgen.fun/chat',
+      'Credential-protected AdultGen AI investor demo for evaluating private companion chat capabilities.',
+    canonical: 'https://adultgen.fun/investor-demo',
   });
 
   const [authenticated, setAuthenticated] = useState(false);
@@ -179,10 +179,10 @@ export default function InvestorDemo() {
 
   if (checkingSession) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#fbfbfb] px-6">
+      <main className="flex min-h-screen items-center justify-center bg-[#050505] px-6">
         <a
           href="/"
-          className="absolute left-6 top-6 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm font-medium text-[#121212] transition-colors hover:bg-white"
+          className="absolute left-6 top-6 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10"
         >
           Home
         </a>
@@ -193,10 +193,10 @@ export default function InvestorDemo() {
 
   if (!authenticated) {
     return (
-      <main className="min-h-screen bg-[#fbfbfb] px-6 py-10 md:py-14">
+      <main className="min-h-screen bg-[#050505] px-6 py-10 md:py-14">
         <a
           href="/"
-          className="mb-8 inline-flex rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm font-medium text-[#121212] transition-colors hover:bg-white"
+          className="mb-8 inline-flex rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10"
         >
           Home
         </a>
@@ -209,7 +209,7 @@ export default function InvestorDemo() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#8338ec]">
               Private beta
             </p>
-            <h1 className="text-[36px] font-semibold leading-tight tracking-[-1.5px] text-[#121212] md:text-[44px]">
+            <h1 className="text-[36px] font-semibold leading-tight tracking-[-1.5px] text-white md:text-[44px]">
               Uncensored adult chat,
               <span className="gradient-text"> ready now.</span>
             </h1>
@@ -235,25 +235,25 @@ export default function InvestorDemo() {
           </div>
 
           <form onSubmit={submitLogin} className="glass-card w-full p-8">
-            <div className="mb-6 flex items-center gap-2 text-sm font-medium text-[#121212]">
+            <div className="mb-6 flex items-center gap-2 text-sm font-medium text-white">
               <Lock size={16} />
               Sign in with beta credentials
             </div>
-            <label className="mb-2 block text-sm font-medium text-[#121212]">Login</label>
+            <label className="mb-2 block text-sm font-medium text-white">Login</label>
             <input
               type="text"
               value={login}
               onChange={(event) => setLogin(event.target.value)}
-              className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#121212] outline-none focus:border-[#8338ec]"
+              className="w-full rounded-2xl border border-white/10 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none focus:border-[#8338ec]"
               autoComplete="username"
               required
             />
-            <label className="mb-2 mt-4 block text-sm font-medium text-[#121212]">Password</label>
+            <label className="mb-2 mt-4 block text-sm font-medium text-white">Password</label>
             <input
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#121212] outline-none focus:border-[#8338ec]"
+              className="w-full rounded-2xl border border-white/10 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none focus:border-[#8338ec]"
               autoComplete="current-password"
               required
             />
@@ -263,7 +263,7 @@ export default function InvestorDemo() {
             <button
               type="submit"
               disabled={isLoading}
-              className="mt-6 w-full rounded-full bg-[#121212] px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-50"
+              className="mt-6 w-full rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#111111] transition-all duration-300 hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isLoading ? 'Checking…' : 'Enter private chat'}
             </button>
@@ -277,7 +277,7 @@ export default function InvestorDemo() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f0f2f5] px-4 py-6 md:px-6 md:py-8">
+    <main className="min-h-screen bg-[#050505] px-4 py-6 md:px-6 md:py-8">
       <div className="mx-auto flex min-h-[calc(100vh-48px)] max-w-[1200px] flex-col gap-4">
         <header className="flex flex-wrap items-center justify-between gap-3">
           <a href="/" aria-label="AdultGen AI home">

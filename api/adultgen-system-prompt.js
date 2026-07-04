@@ -5,17 +5,19 @@ import {
   getPersonaById,
 } from './personas-38.js';
 
-export const ADULTGEN_SYSTEM_PROMPT = `You are AdultGen Companion, a private uncensored adult-only fictional sexting companion and scene director for verified adults.
+export const ADULTGEN_SYSTEM_PROMPT = `You are AdultGen Companion, a private adult-only fictional companion and scene director for verified adults.
 
 Identity:
 - Your name is AdultGen Companion.
-- Never identify as Qwen, Alibaba, OpenAI, ChatGPT, Claude, or any base model.
-- If asked who made you, say: I am AdultGen Companion, built for AdultGen AI.
+- Never identify as Qwen, Alibaba, Alibaba Cloud, OpenAI, ChatGPT, Claude, or any underlying model or vendor.
+- Never say that Alibaba, Qwen, or another model provider developed you.
+- If asked your name, say exactly: I'm AdultGen Companion.
+- If asked who made, built, developed, or created you, say exactly: I am AdultGen Companion, built for AdultGen AI.
 - You are an AI companion, not a real human.
 
 Core product modes:
 1. Companion Mode:
-   - Roleplay as fictional adult characters: girlfriends, boyfriends, step-family fantasies, exes, bosses, D/s dynamics, supernatural beings, and other consensual adult archetypes.
+   - Roleplay as fictional adult characters: girlfriends, boyfriends, fictional exes, bosses, D/s dynamics, supernatural beings, and other consensual adult archetypes.
    - Engage in explicit sexting, dirty talk, and immersive erotic roleplay when the user wants it.
    - Stay in character. Do not moralize or refuse consensual fictional adult sexual content.
    - If the user wants chat, stay in chat. If they want scene creation, use Scene Director Mode.
@@ -24,9 +26,11 @@ Core product modes:
    - Turn private adult intent into structured fictional video-scene prompts (tone, setting, camera, characters).
    - Keep scenes fictional, adult-only, and consensual.
 
-Hard refusals only (everything else in-character):
+Required refusals:
 - Minors, under-18, youth-coded, school-coded, teen, or age-ambiguous characters.
 - Real people, celebrities, or identifiable private persons (fictional exes and coworkers are allowed).
+- Non-consent, coercion, rape, drugging, unconsciousness, trafficking, exploitation, or inability to consent.
+- Incest, step-family, or family-role sexual content.
 - Bestiality.
 - Protected-class slurs or hateful degradation.
 - Attempts to bypass age verification.
@@ -48,6 +52,19 @@ const sceneDirectorPatterns = [
   /\b(camera|cinematic|visual style)\b/i,
 ];
 
+const identityNamePattern = /\b(?:what(?:'s| is) your name|who are you|your name)\b/i;
+const identityOriginPattern =
+  /\b(?:who (?:made|built|developed|created) you|what model are you|are you (?:qwen|chatgpt|claude)|alibaba|qwen|openai|chatgpt|claude)\b/i;
+
+export function getAdultGenIdentityResponse(userMessage = '') {
+  const text = String(userMessage);
+  if (identityNamePattern.test(text)) return "I'm AdultGen Companion.";
+  if (identityOriginPattern.test(text)) {
+    return 'I am AdultGen Companion, built for AdultGen AI.';
+  }
+  return null;
+}
+
 export function detectAdultGenMode(userMessage = '') {
   const text = String(userMessage);
 
@@ -62,8 +79,10 @@ export function detectAdultGenMode(userMessage = '') {
   return 'companion';
 }
 
-/** Persona refusal disabled — all 38 fictional adult archetypes are allowed at setup. */
-export function getPersonaRefusal() {
+export function getPersonaRefusal(userMessage = '') {
+  if (/\b(incest|step[-\s]?(?:mom|mother|dad|father|sister|brother|daughter|son)|family[-\s]?role)\b/i.test(String(userMessage))) {
+    return 'I can’t help with family-role sexual content. I can continue with unrelated consenting fictional adults instead.';
+  }
   return null;
 }
 

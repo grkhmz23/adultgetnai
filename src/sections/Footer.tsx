@@ -5,8 +5,7 @@ const footerLinks = [
     title: 'Product',
     links: [
       { label: 'Overview', href: '/' },
-      { label: 'Private chat', href: '/chat' },
-      { label: 'Investors', href: '/contact' },
+      { label: 'Early access', href: '/contact' },
       { label: 'Compliance', href: '/content-policy' },
     ],
   },
@@ -31,7 +30,7 @@ const footerLinks = [
 export default function Footer() {
   return (
     <footer
-      className="relative bg-[#fbfbfb] border-t border-black/8"
+      className="relative border-t border-white/10 bg-[#050505]"
       style={{ zIndex: 2 }}
     >
       <div className="max-w-[1400px] mx-auto px-6 py-16 md:py-24">
@@ -42,14 +41,14 @@ export default function Footer() {
               <BrandLogo compact />
             </a>
             <p className="text-sm text-[#888888] max-w-[300px] leading-relaxed mb-6">
-              Uncensored adult chat for verified adults — live in private beta. Synthetic image and video are in development; we are seeking investors for the media layer.
+              Uncensored adult chat for verified adults — live in private beta. Synthetic image and video experiences are in development.
             </p>
           </div>
 
           {/* Link Columns */}
           {footerLinks.map((column) => (
             <div key={column.title} className="md:col-span-2 md:col-start-auto">
-              <h4 className="text-sm font-semibold text-[#121212] mb-4 uppercase tracking-wider">
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
                 {column.title}
               </h4>
               <ul className="space-y-3">
@@ -57,7 +56,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-[#888888] hover:text-[#121212] transition-colors duration-300"
+                      className="text-sm text-[#888888] transition-colors duration-300 hover:text-white"
                     >
                       {link.label}
                     </a>
@@ -69,7 +68,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
           <p className="text-xs text-[#aaaaaa]">
             &copy; 2026 AdultGen AI. All rights reserved.
           </p>

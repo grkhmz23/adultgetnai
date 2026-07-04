@@ -10,7 +10,7 @@ const features = [
     image: '/images/image-studio.jpg',
     tag: 'Live now',
     color: '#8338ec',
-    href: '/chat',
+    href: '/contact',
   },
   {
     icon: ShieldCheck,
@@ -26,9 +26,9 @@ const features = [
     icon: Image,
     title: 'Synthetic Images',
     description:
-      'Investor-backed still-image pipeline for fictional adults — consent controls, prompt safety, and no real-person likeness. In active development.',
+      'Purpose-built still-image pipeline for fictional adults — consent controls, prompt safety, and no real-person likeness. In active development.',
     image: '/images/character-creator.jpg',
-    tag: 'Seeking investment',
+    tag: 'In development',
     color: '#3a86ff',
     href: '/contact',
   },
@@ -51,13 +51,13 @@ export default function FeatureShowcase() {
     <section
       ref={sectionRef}
       id="features"
-      className="relative bg-[#fbfbfb] py-[120px] md:py-[160px]"
+      className="relative bg-[#050505] py-[120px] md:py-[160px]"
       style={{ zIndex: 2 }}
     >
       <div className="mx-auto max-w-[1400px] px-6">
         <div className="mb-20 text-center">
           <h2
-            className={`reveal-up text-[40px] font-semibold leading-tight tracking-[-2px] text-[#121212] md:text-[64px] ${inView ? 'is-visible' : ''}`}
+            className={`reveal-up text-[40px] font-semibold leading-tight tracking-[-2px] text-white md:text-[64px] ${inView ? 'is-visible' : ''}`}
           >
             Chat-first.{' '}
             <span className="gradient-text">Media next.</span>
@@ -66,7 +66,7 @@ export default function FeatureShowcase() {
             className={`reveal-up reveal-up-delay-1 mx-auto mt-4 max-w-[520px] text-base text-[#888888] ${inView ? 'is-visible' : ''}`}
           >
             Uncensored adult chat ships today. Synthetic image and video layers are the next
-            fundraise — built with the same compliance and fictional-adult-only standard.
+            product phase — built with the same compliance and fictional-adult-only standard.
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export default function FeatureShowcase() {
                     >
                       <Icon size={18} style={{ color: feature.color }} />
                     </div>
-                    <h3 className="text-lg font-semibold text-[#121212]">{feature.title}</h3>
+                    <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
                   </div>
                   <p className="text-sm leading-relaxed text-[#888888]">{feature.description}</p>
                 </div>

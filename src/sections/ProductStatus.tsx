@@ -11,7 +11,7 @@ const milestones = [
   },
   {
     icon: Sparkles,
-    status: 'In development · seeking investors',
+    status: 'In development',
     title: 'Synthetic image generation',
     description:
       'Consent-first still-image pipeline for fictional adults only — labeled outputs, prompt safety, and no real-person likeness.',
@@ -19,7 +19,7 @@ const milestones = [
   },
   {
     icon: Video,
-    status: 'Roadmap · seeking investors',
+    status: 'On the roadmap',
     title: 'Synthetic adult video',
     description:
       'Short-form private video from structured scene intent. Built after chat and image layers prove safety and retention.',
@@ -29,19 +29,19 @@ const milestones = [
 
 export default function ProductStatus() {
   return (
-    <section id="product" className="relative bg-[#fbfbfb] py-24 md:py-32" style={{ zIndex: 2 }}>
+    <section id="product" className="relative bg-[#050505] py-24 md:py-32" style={{ zIndex: 2 }}>
       <div className="mx-auto max-w-[1100px] px-6">
         <div className="mb-14 text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#8338ec]">
             Product status
           </p>
-          <h2 className="text-[36px] font-semibold tracking-[-1.5px] text-[#121212] md:text-[52px]">
+          <h2 className="text-[36px] font-semibold tracking-[-1.5px] text-white md:text-[52px]">
             Chat is ready.
             <span className="gradient-text"> Media is next.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-[560px] text-base leading-relaxed text-[#888888]">
-            AdultGen ships uncensored adult chat today while we raise for synthetic image and video
-            generation — fictional adults only, compliance-first, private by design.
+            AdultGen ships uncensored adult chat today and is expanding into synthetic image and
+            video generation — fictional adults only, compliance-first, private by design.
           </p>
         </div>
 
@@ -65,7 +65,7 @@ export default function ProductStatus() {
                 >
                   {item.status}
                 </p>
-                <h3 className="text-lg font-semibold text-[#121212]">{item.title}</h3>
+                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-[#888888]">
                   {item.description}
                 </p>
@@ -75,18 +75,12 @@ export default function ProductStatus() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a
-            href="/chat"
-            className="rounded-full bg-[#121212] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
-          >
-            Open private chat
-          </a>
           <button
             type="button"
             onClick={() => window.dispatchEvent(new CustomEvent('adultgen:open-early-access'))}
-            className="rounded-full border border-black/10 bg-white/70 px-6 py-3 text-sm font-semibold text-[#121212] transition-all duration-300 hover:bg-white"
+            className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#111111] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
           >
-            Investor & early access
+            Request early access
           </button>
         </div>
       </div>

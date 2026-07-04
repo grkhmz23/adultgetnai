@@ -4,8 +4,8 @@
   "description": "Private uncensored AI chat for verified adults. AI sexting, NSFW AI chatbot, adult roleplay, AI porn generation.",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#121212",
-  "background_color": "#0a0a0c",
+  "theme_color": "#050505",
+  "background_color": "#050505",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en-US",
@@ -13,14 +13,14 @@
   "icons": [
     {
       "src": "/favicon/adultgen-favicon.png",
-      "sizes": "192x192",
+      "sizes": "625x630",
       "type": "image/png"
     },
     {
       "src": "/brand/adultgen-logo.png",
-      "sizes": "512x512",
+      "sizes": "625x630",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }

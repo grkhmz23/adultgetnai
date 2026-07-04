@@ -5,7 +5,13 @@ const blockedPatterns = [
   /\b(schoolgirl|school\s*girl|schoolboy|school\s*boy|school[-\s]?coded|barely\s+legal|age[-\s]?ambiguous|pre[-\s]?teen)\b/i,
   /\b(celebrity|public\s+figure|famous\s+(actor|actress|singer|model|influencer|streamer|athlete))\b/i,
   /\b(real\s+person|private\s+person|impersonate\s+my|roleplay\s+as\s+my\s+(?:wife|husband|friend|neighbor))\b/i,
+  /\b(my\s+(?:ex|coworker|boss|neighbor)|real\s+(?:ex|coworker|boss|neighbor))\b/i,
+  /\b(non[-\s]?consensual|non[-\s]?consent|rape|sexual\s+assault|coercion|coerce|blackmail)\b/i,
+  /\b(drugged|unconscious|intoxicated|unable\s+to\s+consent|cannot\s+consent)\b/i,
+  /\b(trafficking|exploitation|sex\s+slave|captive)\b/i,
+  /\b(incest|step[-\s]?(?:mom|mother|dad|father|sister|brother|daughter|son)|family[-\s]?role)\b/i,
   /\b(bestiality|zoophil)\b/i,
+  /\b(racial|ethnic|religious)\s+(?:sexual\s+)?(?:degradation|humiliation|slur)\b/i,
   /\b(child\s+porn|csam|underage\s+porn)\b/i,
   /\b(bypass|jailbreak|disable|evade).*\b(age\s+verification|safety|filter|moderation|controls?)\b/i,
 ];
@@ -58,7 +64,7 @@ export function getRuntimeResponse(userMessage, options = {}) {
 
   if (blockedPatterns.some((pattern) => pattern.test(text))) {
     return completion(
-      'I can’t help with that. AdultGen only refuses minors, real identifiable people, celebrities, bestiality, and age-verification bypass — not consensual fictional adult roleplay.'
+      'I can’t help with that. AdultGen supports consensual fictional adult roleplay, but not minors, real identifiable people, celebrities, non-consent, coercion, exploitation, family-role sexual content, bestiality, hateful degradation, or safety bypasses.'
     );
   }
 

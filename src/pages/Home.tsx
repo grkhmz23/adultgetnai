@@ -15,7 +15,7 @@ export default function Home() {
     canonical: 'https://adultgen.fun',
   });
   return (
-    <div className="relative min-h-screen bg-[#fbfbfb]">
+    <div className="relative min-h-screen bg-[#050505]">
       <LazyMeshGradient />
       <Header />
 

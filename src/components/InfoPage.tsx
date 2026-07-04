@@ -7,11 +7,11 @@ type InfoSectionProps = {
 
 export function InfoSection({ title, children }: InfoSectionProps) {
   return (
-    <section className="rounded-[8px] border border-black/8 bg-white/75 p-6 md:p-8 shadow-[0_16px_60px_rgba(0,0,0,0.04)]">
-      <h2 className="mb-5 text-2xl font-semibold tracking-[-0.02em] text-[#121212]">
+    <section className="rounded-[8px] border border-white/10 bg-white/[0.045] p-6 shadow-[0_16px_60px_rgba(0,0,0,0.28)] md:p-8">
+      <h2 className="mb-5 text-2xl font-semibold tracking-[-0.02em] text-white">
         {title}
       </h2>
-      <div className="space-y-4 text-[#555555]">{children}</div>
+      <div className="space-y-4 text-[#aaaaaa]">{children}</div>
     </section>
   );
 }
@@ -35,4 +35,3 @@ export function BulletList({ items }: { items: string[] }) {
     </ul>
   );
 }
-

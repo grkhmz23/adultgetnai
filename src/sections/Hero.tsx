@@ -93,7 +93,7 @@ export default function Hero() {
     >
       <div className="mx-auto max-w-[800px] text-center">
         <h1
-          className={`reveal-up mb-6 text-[48px] font-semibold leading-[1.05] tracking-[-2px] text-[#121212] md:text-[72px] ${visibleClass}`}
+          className={`reveal-up mb-6 text-[48px] font-semibold leading-[1.05] tracking-[-2px] text-white md:text-[72px] ${visibleClass}`}
         >
           Private uncensored sexting
           <br />
@@ -105,8 +105,8 @@ export default function Hero() {
         >
           AdultGen chat is live in private beta — 38 fictional personas, natural
           private messaging, and in-house companion models built for adult roleplay.
-          Synthetic image and video generation are our next milestone; we are actively
-          seeking investors for that layer.
+          Synthetic image and video generation are our next milestone, built around
+          fictional adults, consent controls, and private-by-design experiences.
         </p>
 
         <div
@@ -115,16 +115,10 @@ export default function Hero() {
           <button
             type="button"
             onClick={requestEarlyAccess}
-            className="w-full rounded-full bg-[#121212] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg sm:w-auto"
+            className="w-full rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#111111] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg sm:w-auto"
           >
             Request Early Access
           </button>
-          <a
-            href="/chat"
-            className="w-full rounded-full border border-black/10 bg-white/70 px-6 py-3 text-sm font-semibold text-[#121212] transition-all duration-300 hover:scale-[1.02] hover:bg-white sm:w-auto"
-          >
-            Open private chat
-          </a>
         </div>
       </div>
 
@@ -151,7 +145,7 @@ export default function Hero() {
               type="button"
               aria-label="Close early access form"
               onClick={() => setEarlyAccessOpen(false)}
-              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-[#888888] transition-colors hover:bg-black/5 hover:text-[#121212]"
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-[#888888] transition-colors hover:bg-white/10 hover:text-white"
             >
               <X size={18} />
             </button>
@@ -160,7 +154,7 @@ export default function Hero() {
               <p className="mb-2 text-xs font-semibold uppercase tracking-[2px] text-[#8338ec]">
                 Private access
               </p>
-              <h2 id="early-access-title" className="text-2xl font-semibold text-[#121212]">
+              <h2 id="early-access-title" className="text-2xl font-semibold text-white">
                 Request Early Access
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-[#888888]">
@@ -177,7 +171,7 @@ export default function Hero() {
                 <button
                   type="button"
                   onClick={() => setEarlyAccessOpen(false)}
-                  className="mt-4 rounded-full bg-[#121212] px-5 py-2.5 text-sm font-semibold text-white"
+                  className="mt-4 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#111111]"
                 >
                   Close
                 </button>
@@ -196,7 +190,7 @@ export default function Hero() {
                     autoComplete="name"
                     required
                     placeholder="Name"
-                    className="min-h-12 rounded-2xl border border-black/10 bg-white/80 px-4 text-sm text-[#121212] outline-none transition-colors placeholder:text-[#aaaaaa] focus:border-[#8338ec]/45"
+                    className="min-h-12 rounded-2xl border border-white/10 bg-white/[0.07] px-4 text-sm text-white outline-none transition-colors placeholder:text-[#777777] focus:border-[#8338ec]/60"
                   />
                   <label className="sr-only" htmlFor="early-access-email">
                     Email
@@ -208,7 +202,7 @@ export default function Hero() {
                     autoComplete="email"
                     required
                     placeholder="Email"
-                    className="min-h-12 rounded-2xl border border-black/10 bg-white/80 px-4 text-sm text-[#121212] outline-none transition-colors placeholder:text-[#aaaaaa] focus:border-[#8338ec]/45"
+                    className="min-h-12 rounded-2xl border border-white/10 bg-white/[0.07] px-4 text-sm text-white outline-none transition-colors placeholder:text-[#777777] focus:border-[#8338ec]/60"
                   />
                 </div>
                 <label className="sr-only" htmlFor="early-access-message">
@@ -220,7 +214,7 @@ export default function Hero() {
                   required
                   rows={4}
                   placeholder="Tell us who you are and why you want access."
-                  className="min-h-28 resize-none rounded-2xl border border-black/10 bg-white/80 px-4 py-3 text-sm text-[#121212] outline-none transition-colors placeholder:text-[#aaaaaa] focus:border-[#8338ec]/45"
+                  className="min-h-28 resize-none rounded-2xl border border-white/10 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-[#777777] focus:border-[#8338ec]/60"
                 />
                 <input
                   type="text"
@@ -242,14 +236,14 @@ export default function Hero() {
                   <button
                     type="button"
                     onClick={() => setEarlyAccessOpen(false)}
-                    className="rounded-full border border-black/10 bg-white/70 px-6 py-3 text-sm font-semibold text-[#121212] transition-colors hover:bg-white"
+                    className="rounded-full border border-white/10 bg-white/[0.06] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={status === 'submitting'}
-                    className="rounded-full bg-[#121212] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
+                    className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#111111] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {status === 'submitting' ? 'Sending...' : 'Send request'}
                   </button>

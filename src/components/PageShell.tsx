@@ -14,7 +14,7 @@ export default function PageShell({ title, description, eyebrow, children }: Pag
   usePageMeta({ title, description });
 
   return (
-    <div className="min-h-screen bg-[#fbfbfb]">
+    <div className="min-h-screen bg-[#050505]">
       <Header />
       <main className="relative pt-[120px] pb-20" style={{ zIndex: 2 }}>
         <section className="mx-auto max-w-[920px] px-6">
@@ -23,10 +23,10 @@ export default function PageShell({ title, description, eyebrow, children }: Pag
               {eyebrow}
             </p>
           )}
-          <h1 className="text-[42px] md:text-[64px] font-semibold tracking-[-2px] leading-tight text-[#121212]">
+          <h1 className="text-[42px] font-semibold leading-tight tracking-[-2px] text-white md:text-[64px]">
             {title}
           </h1>
-          <div className="mt-10 space-y-8 text-base leading-8 text-[#555555]">
+          <div className="mt-10 space-y-8 text-base leading-8 text-[#aaaaaa]">
             {children}
           </div>
         </section>

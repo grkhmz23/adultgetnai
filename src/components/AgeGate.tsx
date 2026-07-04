@@ -55,7 +55,7 @@ export default function AgeGate({ children }: { children: ReactNode }) {
   }
 
   return (
-    <main className="min-h-screen bg-[#fbfbfb] px-6 py-8">
+    <main className="min-h-screen bg-[#050505] px-6 py-8">
       <div className="mx-auto flex min-h-[calc(100vh-64px)] max-w-[520px] items-center justify-center">
         <section className="glass-card w-full p-7 text-center md:p-9">
           <div className="mb-8 flex justify-center">
@@ -67,7 +67,7 @@ export default function AgeGate({ children }: { children: ReactNode }) {
               <p className="mb-3 text-xs font-semibold uppercase tracking-[2px] text-[#8338ec]">
                 Age restricted
               </p>
-              <h1 className="text-3xl font-semibold tracking-[-1px] text-[#121212]">
+              <h1 className="text-3xl font-semibold tracking-[-1px] text-white">
                 Access unavailable
               </h1>
               <p className="mx-auto mt-4 max-w-[360px] text-sm leading-relaxed text-[#888888]">
@@ -76,7 +76,7 @@ export default function AgeGate({ children }: { children: ReactNode }) {
               </p>
               <a
                 href="https://www.google.com"
-                className="mt-7 inline-flex rounded-full bg-[#121212] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02]"
+                className="mt-7 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#111111] transition-all duration-300 hover:scale-[1.02]"
               >
                 Exit site
               </a>
@@ -86,7 +86,7 @@ export default function AgeGate({ children }: { children: ReactNode }) {
               <p className="mb-3 text-xs font-semibold uppercase tracking-[2px] text-[#8338ec]">
                 Adults only
               </p>
-              <h1 className="text-3xl font-semibold tracking-[-1px] text-[#121212]">
+              <h1 className="text-3xl font-semibold tracking-[-1px] text-white">
                 Enter your age to continue
               </h1>
               <p className="mx-auto mt-4 max-w-[380px] text-sm leading-relaxed text-[#888888]">
@@ -110,7 +110,7 @@ export default function AgeGate({ children }: { children: ReactNode }) {
                     setError('');
                   }}
                   placeholder="Your age"
-                  className="min-h-[52px] rounded-2xl border border-black/10 bg-white/80 px-4 text-center text-base font-medium text-[#121212] outline-none transition-colors placeholder:text-[#aaaaaa] focus:border-[#8338ec]/45"
+                  className="min-h-[52px] rounded-2xl border border-white/10 bg-white/[0.07] px-4 text-center text-base font-medium text-white outline-none transition-colors placeholder:text-[#777777] focus:border-[#8338ec]/60"
                 />
                 {error && (
                   <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm font-medium text-[#b42318]">
@@ -119,7 +119,7 @@ export default function AgeGate({ children }: { children: ReactNode }) {
                 )}
                 <button
                   type="submit"
-                  className="rounded-full bg-[#121212] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                  className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#111111] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
                 >
                   Enter AdultGen AI
                 </button>

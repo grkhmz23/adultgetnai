@@ -31,11 +31,10 @@ export default function Contact() {
 
       <a
         href="mailto:info@adultgen.fun"
-        className="inline-flex rounded-full bg-[#121212] px-6 py-3 text-sm font-semibold text-white transition-transform duration-300 hover:scale-[1.02]"
+        className="inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#111111] transition-transform duration-300 hover:scale-[1.02]"
       >
         Email AdultGen AI
       </a>
     </PageShell>
   );
 }
-

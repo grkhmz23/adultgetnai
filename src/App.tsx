@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router'
 import AgeGate from './components/AgeGate'
 
 const Home = lazy(() => import('./pages/Home'))
+const Chat = lazy(() => import('./pages/Chat'))
 const InvestorDemo = lazy(() => import('./pages/InvestorDemo'))
 const About = lazy(() => import('./pages/About'))
 const Careers = lazy(() => import('./pages/Careers'))
@@ -17,8 +18,8 @@ export default function App() {
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/investor-demo" element={<InvestorDemo />} />
-          <Route path="/chat" element={<InvestorDemo />} />
           <Route path="/about" element={<About />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />

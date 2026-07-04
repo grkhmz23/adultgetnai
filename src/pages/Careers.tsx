@@ -48,7 +48,7 @@ export default function Careers() {
       description="Join AdultGen AI and help build private, compliance-first synthetic media infrastructure for verified adults."
       eyebrow="Company"
     >
-      <p className="text-xl font-medium leading-8 text-[#121212]">
+      <p className="text-xl font-medium leading-8 text-white">
         Build the next generation of private synthetic media.
       </p>
 
@@ -68,8 +68,8 @@ export default function Careers() {
       <InfoSection title="Current priority roles">
         <div className="grid gap-4 md:grid-cols-2">
           {roles.map((role) => (
-            <article key={role.title} className="rounded-[8px] border border-black/8 bg-[#fbfbfb] p-5">
-              <h3 className="mb-2 text-lg font-semibold text-[#121212]">{role.title}</h3>
+            <article key={role.title} className="rounded-[8px] border border-white/10 bg-white/[0.045] p-5">
+              <h3 className="mb-2 text-lg font-semibold text-white">{role.title}</h3>
               <p>{role.description}</p>
             </article>
           ))}
@@ -82,4 +82,3 @@ export default function Careers() {
     </PageShell>
   );
 }
-
