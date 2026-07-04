@@ -40,7 +40,7 @@ export default function Footer() {
             <a href="/" className="inline-flex mb-4" aria-label="AdultGen AI home">
               <BrandLogo compact />
             </a>
-            <p className="text-sm text-[#888888] max-w-[300px] leading-relaxed mb-6">
+            <p className="mb-6 max-w-[300px] text-sm leading-relaxed text-[#aaaaaa]">
               Uncensored adult chat for verified adults — live in private beta. Synthetic image and video experiences are in development.
             </p>
           </div>
@@ -56,7 +56,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-[#888888] transition-colors duration-300 hover:text-white"
+                      className="text-sm text-[#aaaaaa] transition-colors duration-300 hover:text-white"
                     >
                       {link.label}
                     </a>

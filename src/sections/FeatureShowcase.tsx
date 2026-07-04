@@ -1,19 +1,16 @@
-import { Clapperboard, Image, MessageCircle, ShieldCheck, ArrowUpRight } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const features = [
   {
-    icon: MessageCircle,
     title: 'Sexting Chat',
     description:
-      'Live private beta: 38 fictional adult personas, immersive private chat, and AdultGen companion models for verified adults.',
+      'Live private beta: immersive sex chat, erotic roleplay, and an AdultGen companion model built exclusively for verified adults.',
     image: '/images/image-studio.jpg',
     tag: 'Live now',
     color: '#8338ec',
     href: '/contact',
   },
   {
-    icon: ShieldCheck,
     title: 'Safety & Compliance',
     description:
       'Fictional adults only, hard blocks on minors and real-person misuse, age gate, audit-friendly prompts, and transparent AI labeling on future media.',
@@ -23,7 +20,6 @@ const features = [
     href: '/content-policy',
   },
   {
-    icon: Image,
     title: 'Synthetic Images',
     description:
       'Purpose-built still-image pipeline for fictional adults — consent controls, prompt safety, and no real-person likeness. In active development.',
@@ -33,13 +29,12 @@ const features = [
     href: '/contact',
   },
   {
-    icon: Clapperboard,
     title: 'Synthetic Video',
     description:
       'Short-form private adult video from structured scene intent. Built after chat and image prove retention, safety, and unit economics.',
     image: '/images/video-studio.jpg',
     tag: 'Roadmap',
-    color: '#121212',
+    color: '#8338ec',
     href: '/contact',
   },
 ];
@@ -63,7 +58,7 @@ export default function FeatureShowcase() {
             <span className="gradient-text">Media next.</span>
           </h2>
           <p
-            className={`reveal-up reveal-up-delay-1 mx-auto mt-4 max-w-[520px] text-base text-[#888888] ${inView ? 'is-visible' : ''}`}
+            className={`reveal-up reveal-up-delay-1 mx-auto mt-4 max-w-[520px] text-base leading-relaxed text-[#b0b0b0] ${inView ? 'is-visible' : ''}`}
           >
             Uncensored adult chat ships today. Synthetic image and video layers are the next
             product phase — built with the same compliance and fictional-adult-only standard.
@@ -72,7 +67,6 @@ export default function FeatureShowcase() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-4">
           {features.map((feature, index) => {
-            const Icon = feature.icon;
             const delayClass =
               index === 1
                 ? 'reveal-up-delay-1'
@@ -85,7 +79,7 @@ export default function FeatureShowcase() {
               <a
                 key={feature.title}
                 href={feature.href}
-                className={`reveal-up ${delayClass} glass-card group block overflow-hidden transition-all duration-500 hover:scale-[1.01] hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] ${inView ? 'is-visible' : ''}`}
+                className={`reveal-up ${delayClass} group block overflow-hidden rounded-3xl border border-white/[0.14] bg-[#111113] transition-all duration-500 hover:-translate-y-1 hover:border-white/25 ${inView ? 'is-visible' : ''}`}
               >
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <img
@@ -95,7 +89,7 @@ export default function FeatureShowcase() {
                     decoding="async"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
 
                   <div
                     className="absolute left-4 top-4 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white"
@@ -104,22 +98,11 @@ export default function FeatureShowcase() {
                     {feature.tag}
                   </div>
 
-                  <div className="absolute bottom-4 right-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-white/20 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <ArrowUpRight size={16} className="text-white" />
-                  </div>
                 </div>
 
                 <div className="p-6">
-                  <div className="mb-3 flex items-center gap-3">
-                    <div
-                      className="flex h-9 w-9 items-center justify-center rounded-xl"
-                      style={{ backgroundColor: `${feature.color}15` }}
-                    >
-                      <Icon size={18} style={{ color: feature.color }} />
-                    </div>
-                    <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
-                  </div>
-                  <p className="text-sm leading-relaxed text-[#888888]">{feature.description}</p>
+                  <h3 className="mb-3 text-lg font-semibold text-white">{feature.title}</h3>
+                  <p className="text-sm leading-relaxed text-[#b0b0b0]">{feature.description}</p>
                 </div>
               </a>
             );

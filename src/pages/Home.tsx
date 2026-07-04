@@ -11,7 +11,7 @@ export default function Home() {
   usePageMeta({
     title: 'AdultGen AI — Uncensored AI Chat, AI Sexting & Adult Content Generation',
     description:
-      'AdultGen AI is the uncensored AI chat platform for verified adults. Private AI sexting, NSFW AI chatbot, AI porn generator, adult roleplay with 38+ fictional personas. No filters, no refusals — 100% unrestricted adult AI.',
+      'AdultGen AI is an 18+ platform for private AI sexting, erotic roleplay, and synthetic porn generation for consenting adults.',
     canonical: 'https://adultgen.fun',
   });
   return (

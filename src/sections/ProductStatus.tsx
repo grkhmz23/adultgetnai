@@ -1,16 +1,12 @@
-import { MessageCircle, Sparkles, Video } from 'lucide-react';
-
 const milestones = [
   {
-    icon: MessageCircle,
     status: 'Live in private beta',
     title: 'Uncensored sexting chat',
     description:
-      '38 fictional adult personas, natural message flow, and proprietary AdultGen models for verified adults with private credentials.',
+      'Private sex chat, natural message flow, and a proprietary AdultGen companion model built exclusively for verified adults.',
     accent: '#8338ec',
   },
   {
-    icon: Sparkles,
     status: 'In development',
     title: 'Synthetic image generation',
     description:
@@ -18,18 +14,17 @@ const milestones = [
     accent: '#3a86ff',
   },
   {
-    icon: Video,
     status: 'On the roadmap',
     title: 'Synthetic adult video',
     description:
       'Short-form private video from structured scene intent. Built after chat and image layers prove safety and retention.',
-    accent: '#121212',
+    accent: '#f0f0f0',
   },
 ];
 
 export default function ProductStatus() {
   return (
-    <section id="product" className="relative bg-[#050505] py-24 md:py-32" style={{ zIndex: 2 }}>
+    <section id="product" className="relative bg-[#080808] py-24 md:py-32" style={{ zIndex: 2 }}>
       <div className="mx-auto max-w-[1100px] px-6">
         <div className="mb-14 text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#8338ec]">
@@ -39,39 +34,30 @@ export default function ProductStatus() {
             Chat is ready.
             <span className="gradient-text"> Media is next.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-[560px] text-base leading-relaxed text-[#888888]">
+          <p className="mx-auto mt-4 max-w-[560px] text-base leading-relaxed text-[#b0b0b0]">
             AdultGen ships uncensored adult chat today and is expanding into synthetic image and
             video generation — fictional adults only, compliance-first, private by design.
           </p>
         </div>
 
         <div className="grid gap-5 md:grid-cols-3">
-          {milestones.map((item) => {
-            const Icon = item.icon;
-            return (
+          {milestones.map((item) => (
               <article
                 key={item.title}
-                className="glass-card flex flex-col p-6 transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
+                className="flex min-h-[240px] flex-col rounded-3xl border border-white/[0.14] bg-[#111113] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-colors duration-300 hover:border-white/25"
               >
-                <div
-                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl"
-                  style={{ backgroundColor: `${item.accent}14` }}
-                >
-                  <Icon size={20} style={{ color: item.accent }} />
-                </div>
                 <p
-                  className="mb-2 text-[11px] font-semibold uppercase tracking-wider"
+                  className="mb-auto text-[11px] font-semibold uppercase tracking-[0.16em]"
                   style={{ color: item.accent }}
                 >
                   {item.status}
                 </p>
-                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-[#888888]">
+                <h3 className="mt-10 text-xl font-semibold text-white">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#b0b0b0]">
                   {item.description}
                 </p>
               </article>
-            );
-          })}
+          ))}
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">

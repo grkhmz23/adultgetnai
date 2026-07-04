@@ -13,9 +13,9 @@ export default function RoadmapSection() {
   return (
     <section id="studio" className="relative py-24 md:py-32" style={{ zIndex: 2 }}>
       <div className="mx-auto max-w-[1200px] px-6">
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-8 md:p-14">
+        <div className="relative overflow-hidden rounded-3xl border border-white/[0.14] bg-[#101012] p-8 md:p-14">
           <div
-            className="pointer-events-none absolute inset-0 opacity-40"
+            className="pointer-events-none absolute inset-0 opacity-70"
             aria-hidden
           >
             <div className="grid h-full grid-cols-4 gap-3 p-6 md:grid-cols-8 md:gap-4">
@@ -30,7 +30,7 @@ export default function RoadmapSection() {
                 />
               ))}
             </div>
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/80 to-[#050505]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/55 to-[#101012]" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-[640px] text-center">
@@ -39,7 +39,7 @@ export default function RoadmapSection() {
               <br />
               <span className="gradient-text">to synthetic media</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-[420px] text-sm leading-relaxed text-[#888888] md:text-base">
+            <p className="mx-auto mt-4 max-w-[420px] text-sm leading-relaxed text-[#b0b0b0] md:text-base">
               Intent captured in live sexting today — structured scenes, still images, and
               short-form video as the AdultGen platform grows.
             </p>

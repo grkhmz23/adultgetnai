@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import { X } from 'lucide-react';
 import { requestEarlyAccess } from '../lib/requestEarlyAccess';
 import { adultgenConfig } from '../lib/runtimeConfig';
 import { useInView } from '../hooks/useInView';
@@ -101,12 +100,12 @@ export default function Hero() {
         </h1>
 
         <p
-          className={`reveal-up reveal-up-delay-1 mx-auto mb-10 max-w-[600px] text-base leading-relaxed text-[#888888] md:text-lg ${visibleClass}`}
+          className={`reveal-up reveal-up-delay-1 mx-auto mb-10 max-w-[600px] text-base leading-relaxed text-[#b0b0b0] md:text-lg ${visibleClass}`}
         >
-          AdultGen chat is live in private beta — 38 fictional personas, natural
-          private messaging, and in-house companion models built for adult roleplay.
-          Synthetic image and video generation are our next milestone, built around
-          fictional adults, consent controls, and private-by-design experiences.
+          AdultGen is an 18+ AI platform for private sex chat, erotic roleplay, and
+          synthetic porn generation. Our companion model powers natural one-to-one
+          conversations today, with fictional-adult image and video generation in
+          development. Built for adult consent, privacy, and lawful use.
         </p>
 
         <div
@@ -129,7 +128,7 @@ export default function Hero() {
 
       {earlyAccessOpen && (
         <div
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/30 px-4 py-6 backdrop-blur-md"
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/75 px-4 py-6 backdrop-blur-md"
           role="presentation"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) setEarlyAccessOpen(false);
@@ -145,9 +144,9 @@ export default function Hero() {
               type="button"
               aria-label="Close early access form"
               onClick={() => setEarlyAccessOpen(false)}
-              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-[#888888] transition-colors hover:bg-white/10 hover:text-white"
+              className="absolute right-4 top-4 min-h-9 rounded-full px-3 text-xs font-semibold text-[#aaaaaa] transition-colors hover:bg-white/10 hover:text-white"
             >
-              <X size={18} />
+              Close
             </button>
 
             <div className="pr-10">
@@ -157,7 +156,7 @@ export default function Hero() {
               <h2 id="early-access-title" className="text-2xl font-semibold text-white">
                 Request Early Access
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-[#888888]">
+              <p className="mt-2 text-sm leading-relaxed text-[#b0b0b0]">
                 Tell us who you are and what kind of access you need. Requests go
                 directly to AdultGen AI for private review.
               </p>

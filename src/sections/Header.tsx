@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
 import { requestEarlyAccess } from '../lib/requestEarlyAccess';
 
@@ -59,10 +58,12 @@ export default function Header() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="p-2 text-white md:hidden"
+          type="button"
+          aria-expanded={mobileOpen}
+          className="min-h-11 rounded-full border border-white/15 px-4 text-sm font-medium text-white md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          {mobileOpen ? 'Close' : 'Menu'}
         </button>
       </div>
 
