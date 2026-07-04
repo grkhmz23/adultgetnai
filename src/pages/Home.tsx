@@ -3,7 +3,6 @@ import Hero from '../sections/Hero';
 import FeatureShowcase from '../sections/FeatureShowcase';
 import ProductStatus from '../sections/ProductStatus';
 import Footer from '../sections/Footer';
-import LazyMeshGradient from '../components/effects/LazyMeshGradient';
 import { usePageMeta } from '../hooks/use-page-meta';
 
 export default function Home() {
@@ -15,7 +14,6 @@ export default function Home() {
   });
   return (
     <div className="relative min-h-screen bg-[#050505]">
-      <LazyMeshGradient />
       <Header />
 
       <main className="relative">

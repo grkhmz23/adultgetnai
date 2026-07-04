@@ -90,7 +90,23 @@ export default function Hero() {
       className="relative flex min-h-screen flex-col items-center justify-center px-6 pb-20"
       style={{ zIndex: 1 }}
     >
-      <div className="mx-auto max-w-[800px] text-center">
+      <div className="absolute inset-0 overflow-hidden bg-[#050505]" aria-hidden="true">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/video/adultgen-hero-poster.webp"
+          className="h-full w-full object-cover object-center motion-reduce:hidden"
+        >
+          <source src="/video/adultgen-hero.webm" type="video/webm" />
+          <source src="/video/adultgen-hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/60 to-[#050505]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[800px] text-center">
         <h1
           className={`reveal-up mb-6 text-[48px] font-semibold leading-[1.05] tracking-[-2px] text-white md:text-[72px] ${visibleClass}`}
         >
