@@ -134,6 +134,14 @@ export default function Hero() {
           >
             Request Early Access
           </button>
+          <a
+            href="https://t.me/adultgenai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full rounded-full border border-white/20 bg-black/30 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:bg-white/10 sm:w-auto"
+          >
+            Telegram @adultgenai
+          </a>
         </div>
       </div>
 
